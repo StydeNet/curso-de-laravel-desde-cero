@@ -405,16 +405,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.5",
+            "version": "v5.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8281206965dab597915a61668dd9475f802515cc"
+                "reference": "5bd7c77352b9dacbb3e22ad32da232febbca8e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8281206965dab597915a61668dd9475f802515cc",
-                "reference": "8281206965dab597915a61668dd9475f802515cc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5bd7c77352b9dacbb3e22ad32da232febbca8e3c",
+                "reference": "5bd7c77352b9dacbb3e22ad32da232febbca8e3c",
                 "shasum": ""
             },
             "require": {
@@ -533,7 +533,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-19T13:21:47+00:00"
+            "time": "2017-09-20T09:56:06+00:00"
         },
         {
             "name": "laravel/tinker",
