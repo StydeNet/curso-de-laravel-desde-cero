@@ -8,8 +8,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        request('field');
-
         if (request()->has('empty')) {
             $users = [];
         } else {
@@ -20,12 +18,12 @@ class UserController extends Controller
 
         $title = 'Listado de usuarios';
 
-        return view('users', compact('title', 'users'));
+        return view('users.index', compact('title', 'users'));
     }
 
     public function show($id)
     {
-        return "Mostrando detalle del usuario: {$id}";
+        return view('users.show', compact('id'));
     }
 
     public function create()
