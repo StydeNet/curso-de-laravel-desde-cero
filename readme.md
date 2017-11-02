@@ -17,6 +17,8 @@ Con este curso aprenderás sobre los conceptos más importantes del framework m�
 4. [Pruebas](https://styde.net/pruebas-con-laravel/) - 14:10
 5. [Controladores](https://styde.net/controladores-en-laravel/) - 11:40
 6. [Vistas](https://styde.net/vistas-en-laravel/) - 9:25
+7. [Plantillas con Blade](https://styde.net/blade-el-sistema-de-plantillas-de-laravel/) - 12:20
+8. [Layouts con Blade](https://styde.net/layouts-con-blade/) - 20:00
 
 ### En Styde.net también puedes aprender a:
 
