@@ -19,6 +19,16 @@ Con este curso aprenderás sobre los conceptos más importantes del framework m�
 6. [Vistas](https://styde.net/vistas-en-laravel/) - 9:25
 7. [Plantillas con Blade](https://styde.net/blade-el-sistema-de-plantillas-de-laravel/) - 12:20
 8. [Layouts con Blade](https://styde.net/layouts-con-blade/) - 20:00
+9. [Introducción al manejo de base de datos](https://styde.net/introduccion-a-las-bases-de-datos-y-migraciones-con-laravel/) - 12:55
+10. [Modificar tablas ya existentes usando migraciones](https://styde.net/modificar-tablas-ya-existentes-con-las-migraciones-de-laravel/) - 11:30
+11. [Creación y asociación de tablas con el uso de migraciones y claves foráneas](https://styde.net/crear-y-asociar-tablas-usando-las-migraciones-de-laravel-con-claves-foraneas/) - 18:45
+12. [Inserción de datos con el uso de Seeders](https://styde.net/insercion-de-datos-con-los-seeders-de-laravel/) - 15:05
+13. [Constructor de consultas SQL](https://styde.net/constructor-de-consultas-sql-de-laravel/) - 15:50
+14. [Introducción a Eloquent ORM](https://styde.net/introduccion-a-eloquent-el-orm-del-framework-laravel/) - 14:30
+15. [Usando Eloquent ORM de forma interactiva con Tinker](https://styde.net/usando-eloquent-orm-de-forma-interactiva-con-tinker/) - 13:45
+16. [Manejo de atributos en Eloquent ORM](https://styde.net/manejo-de-atributos-en-eloquent-orm-solucion-a-massassignmentexception/) - 10:40
+17. [Relaciones con Eloquent ORM](https://styde.net/relaciones-con-el-orm-eloquent/) - 11:45
+18. [Model Factories](https://styde.net/generar-registros-con-model-factories-en-laravel/) - 10:20
 
 ### En Styde.net también puedes aprender a:
 
