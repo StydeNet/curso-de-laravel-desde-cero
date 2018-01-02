@@ -11,14 +11,22 @@ Con este curso aprenderás sobre los conceptos más importantes del framework m�
 
 ## Lecciones
 
+### Primeros pasos con Laravel
+
 1. [Instalación de Composer y Laravel](https://styde.net/instalacion-de-composer-y-laravel/) - 10:35
 2. [Introducción a Laravel](https://styde.net/introduccion-a-laravel/) - 8:05
 3. [Rutas](https://styde.net/rutas-con-laravel/) - 9:00
 4. [Pruebas](https://styde.net/pruebas-con-laravel/) - 14:10
 5. [Controladores](https://styde.net/controladores-en-laravel/) - 11:40
+
+### Vistas
+
 6. [Vistas](https://styde.net/vistas-en-laravel/) - 9:25
 7. [Plantillas con Blade](https://styde.net/blade-el-sistema-de-plantillas-de-laravel/) - 12:20
 8. [Layouts con Blade](https://styde.net/layouts-con-blade/) - 20:00
+
+### Manejo de Bases de datos con Laravel 
+
 9. [Introducción al manejo de base de datos](https://styde.net/introduccion-a-las-bases-de-datos-y-migraciones-con-laravel/) - 12:55
 10. [Modificar tablas ya existentes usando migraciones](https://styde.net/modificar-tablas-ya-existentes-con-las-migraciones-de-laravel/) - 11:30
 11. [Creación y asociación de tablas con el uso de migraciones y claves foráneas](https://styde.net/crear-y-asociar-tablas-usando-las-migraciones-de-laravel-con-claves-foraneas/) - 18:45
@@ -29,6 +37,16 @@ Con este curso aprenderás sobre los conceptos más importantes del framework m�
 16. [Manejo de atributos en Eloquent ORM](https://styde.net/manejo-de-atributos-en-eloquent-orm-solucion-a-massassignmentexception/) - 10:40
 17. [Relaciones con Eloquent ORM](https://styde.net/relaciones-con-el-orm-eloquent/) - 11:45
 18. [Model Factories](https://styde.net/generar-registros-con-model-factories-en-laravel/) - 10:20
+
+### Módulo CRUD de usuarios
+
+19. [Introducción](https://styde.net/modulo-de-usuarios-con-laravel/) - 2:05
+20. [Listado](https://styde.net/listado-dinamico-de-usuarios-con-laravel-modulo-crud/) - 12:35
+21. [Configuración y uso de base de datos con Laravel y PHPUnit](https://styde.net/configuracion-y-uso-de-base-de-datos-en-el-entorno-de-pruebas-automatizadas-con-laravel-y-phpunit/) - 16:40
+22. [Detalles o perfil](https://styde.net/detalles-o-perfil-de-usuario-con-laravel-modulo-crud/) - 7:00
+23. [Generar URLs](https://styde.net/urls-en-laravel/) - 14:25
+24. [Manejo de errores 404](https://styde.net/manejo-de-errores-404-en-laravel/) - 7:55
+25. [Enlace de modelos a rutas](https://styde.net/enlace-de-modelos-a-rutas-en-laravel/) - 2:20
 
 ### En Styde.net también puedes aprender a:
 
