@@ -44,7 +44,7 @@ class UsersModuleTest extends TestCase
             'name' => 'Duilio Palacios'
         ]);
 
-        $this->get('/usuarios/'.$user->id) // usuarios/5
+        $this->get("/usuarios/{$user->id}") // usuarios/5
             ->assertStatus(200)
             ->assertSee('Duilio Palacios');
     }
@@ -177,4 +177,129 @@ class UsersModuleTest extends TestCase
                 return $viewUser->id === $user->id;
             });
     }
+
+    /** @test */
+    function it_updates_a_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->withoutExceptionHandling();
+
+        $this->put("/usuarios/{$user->id}", [
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => '123456'
+        ])->assertRedirect("/usuarios/{$user->id}");
+
+        $this->assertCredentials([
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => '123456',
+        ]);
+    }
+
+    /** @test */
+    function the_name_is_required_when_updating_the_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->from("usuarios/{$user->id}/editar")
+            ->put("usuarios/{$user->id}", [
+                'name' => '',
+                'email' => 'duilio@styde.net',
+                'password' => '123456'
+            ])
+            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertSessionHasErrors(['name']);
+
+        $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
+    }
+
+    /** @test */
+    function the_email_must_be_valid_when_updating_the_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->from("usuarios/{$user->id}/editar")
+            ->put("usuarios/{$user->id}", [
+                'name' => 'Duilio Palacios',
+                'email' => 'correo-no-valido',
+                'password' => '123456'
+            ])
+            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertSessionHasErrors(['email']);
+
+        $this->assertDatabaseMissing('users', ['name' => 'Duilio Palacios']);
+    }
+
+    /** @test */
+    function the_email_must_be_unique_when_updating_the_user()
+    {
+        //$this->withoutExceptionHandling();
+
+        factory(User::class)->create([
+            'email' => 'existing-email@example.com',
+        ]);
+
+        $user = factory(User::class)->create([
+            'email' => 'duilio@styde.net'
+        ]);
+
+        $this->from("usuarios/{$user->id}/editar")
+            ->put("usuarios/{$user->id}", [
+                'name' => 'Duilio',
+                'email' => 'existing-email@example.com',
+                'password' => '123456'
+            ])
+            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertSessionHasErrors(['email']);
+
+        //
+    }
+
+    /** @test */
+    function the_users_email_can_stay_the_same_when_updating_the_user()
+    {
+        $user = factory(User::class)->create([
+            'email' => 'duilio@styde.net'
+        ]);
+
+        $this->from("usuarios/{$user->id}/editar")
+            ->put("usuarios/{$user->id}", [
+                'name' => 'Duilio Palacios',
+                'email' => 'duilio@styde.net',
+                'password' => '12345678'
+            ])
+            ->assertRedirect("usuarios/{$user->id}"); // (users.show)
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'Duilio Palacios',
+            'email' => 'duilio@styde.net',
+        ]);
+    }
+
+    /** @test */
+    function the_password_is_optional_when_updating_the_user()
+    {
+        $oldPassword = 'CLAVE_ANTERIOR';
+
+        $user = factory(User::class)->create([
+            'password' => bcrypt($oldPassword)
+        ]);
+
+        $this->from("usuarios/{$user->id}/editar")
+            ->put("usuarios/{$user->id}", [
+                'name' => 'Duilio',
+                'email' => 'duilio@styde.net',
+                'password' => ''
+            ])
+            ->assertRedirect("usuarios/{$user->id}"); // (users.show)
+
+        $this->assertCredentials([
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => $oldPassword // VERY IMPORTANT!
+        ]);
+    }
+
 }
