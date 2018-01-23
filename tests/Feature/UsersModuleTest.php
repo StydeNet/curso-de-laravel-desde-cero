@@ -316,6 +316,7 @@ class UsersModuleTest extends TestCase
            'id' => $user->id
         ]);
 
+        // Or:
         //$this->assertSame(0, User::count());
     }
 }
