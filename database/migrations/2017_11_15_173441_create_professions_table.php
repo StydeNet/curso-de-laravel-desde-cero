@@ -19,6 +19,7 @@ class CreateProfessionsTable extends Migration
             $table->string('title', 100)->unique();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
