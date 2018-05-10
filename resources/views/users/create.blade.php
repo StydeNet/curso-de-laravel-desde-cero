@@ -42,6 +42,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="profession_id">Profesión</label>
+                    <select name="profession_id" id="profession_id" class="form-control">
+                        <option value="">Selecciona una profesión</option>
+                    @foreach($professions as $profession)
+                        <option value="{{ $profession->id }}"{{ old('profession_id') == $profession->id ? ' selected' : '' }}>
+                            {{ $profession->title }}
+                        </option>
+                    @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="twitter">Twitter:</label>
                     <input type="text" class="form-control" name="twitter" id="twitter" placeholder="https://twitter.com/Stydenet" value="{{ old('twitter') }}">
                 </div>

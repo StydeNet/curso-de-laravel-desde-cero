@@ -63,9 +63,14 @@ class UsersModuleTest extends TestCase
     /** @test */
     function it_loads_the_new_users_page()
     {
+        $profession = factory(Profession::class)->create();
+
         $this->get('/usuarios/nuevo')
             ->assertStatus(200)
-            ->assertSee('Crear usuario');
+            ->assertSee('Crear usuario')
+            ->assertViewHas('professions', function ($professions) use ($profession) {
+                return $professions->contains($profession);
+            });
     }
 
     /** @test */
@@ -79,13 +84,13 @@ class UsersModuleTest extends TestCase
             'name' => 'Duilio',
             'email' => 'duilio@styde.net',
             'password' => '123456',
-            'profession_id' => $this->profession->id,
         ]);
 
         $this->assertDatabaseHas('user_profiles', [
             'bio' => 'Programador de Laravel y Vue.js',
             'twitter' => 'https://twitter.com/sileence',
             'user_id' => User::findByEmail('duilio@styde.net')->id,
+            'profession_id' => $this->profession->id,
         ]);
     }
 
@@ -117,19 +122,19 @@ class UsersModuleTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->post('/usuarios/', $this->getValidData([
-            'profession_id' => null,
+            'profession_id' => '',
         ]))->assertRedirect('usuarios');
 
         $this->assertCredentials([
             'name' => 'Duilio',
             'email' => 'duilio@styde.net',
             'password' => '123456',
-            'profession_id' => null,
         ]);
 
         $this->assertDatabaseHas('user_profiles', [
             'bio' => 'Programador de Laravel y Vue.js',
             'user_id' => User::findByEmail('duilio@styde.net')->id,
+            'profession_id' => null,
         ]);
     }
 
@@ -398,14 +403,14 @@ class UsersModuleTest extends TestCase
     {
         $this->profession = factory(Profession::class)->create();
 
-        return array_filter(array_merge([
+        return array_merge([
             'name' => 'Duilio',
             'email' => 'duilio@styde.net',
             'password' => '123456',
             'profession_id' => $this->profession->id,
             'bio' => 'Programador de Laravel y Vue.js',
             'twitter' => 'https://twitter.com/sileence',
-        ], $custom));
+        ], $custom);
     }
 }
 
