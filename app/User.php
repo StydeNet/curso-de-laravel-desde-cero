@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->belongsTo(Profession::class);
     }
 
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'user_skill');
+    }
+
     public function profile()
     {
         return $this->hasOne(UserProfile::class);
