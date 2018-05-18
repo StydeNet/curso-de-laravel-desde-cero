@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Styde.net</h1>
+    <h1>Laravel</h1>
 </body>
 </html>
