@@ -9,7 +9,7 @@
         @include('shared._errors')
 
         <form method="POST" action="{{ url('usuarios') }}">
-            @include('users._fields')
+            @render('UserFields', ['user' => $user])
 
             <div class="form-group mt-4">
                 <button type="submit" class="btn btn-primary">Crear usuario</button>
