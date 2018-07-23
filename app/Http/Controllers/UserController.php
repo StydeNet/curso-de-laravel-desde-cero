@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Http\Forms\UserForm;
 use Illuminate\Validation\Rule;
+use App\{Profession, Skill, User};
 use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller
@@ -25,7 +24,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return new UserForm('users.create', new User);
+        return $this->form('users.create', new User);
     }
 
     public function store(CreateUserRequest $request)
@@ -37,7 +36,17 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return new UserForm('users.edit', $user);
+        return $this->form('users.edit', $user);
+    }
+
+    protected function form($view, User $user)
+    {
+        return view($view, [
+            'professions' => Profession::orderBy('title', 'ASC')->get(),
+            'skills' => Skill::orderBy('name', 'ASC')->get(),
+            'roles' => trans('users.roles'),
+            'user' => $user,
+        ]);
     }
 
     public function update(User $user)
