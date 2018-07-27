@@ -22,17 +22,16 @@ class ProfileController extends Controller
     {
         $user = User::first(); //or auth()->user()
 
-        $data = $request->all(); //
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
 
-        if (empty ($data['password'])) {
-            unset ($data['password']);
-        } else {
-            $data['password'] = bcrypt($data['password']);
-        }
-
-        $user->update($data);
-
-        $user->profile->update($data);
+        $user->profile->update([
+            'bio' => $request->bio,
+            'twitter' => $request->twitter,
+            'profession_id' => $request->profession_id,
+        ]);
 
         return back();
     }

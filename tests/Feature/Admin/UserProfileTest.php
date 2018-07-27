@@ -15,7 +15,6 @@ class UsersProfileTest extends TestCase
     protected $defaultData = [
         'name' => 'Duilio',
         'email' => 'duilio@styde.net',
-        'password' => '123456',
         'bio' => 'Programador de Laravel y Vue.js',
         'twitter' => 'https://twitter.com/sileence',
     ];
@@ -56,46 +55,42 @@ class UsersProfileTest extends TestCase
         ]);
     }
 
+    /** @test */
+    function the_user_cannot_change_its_role()
+    {
+        $user = factory(User::class)->create([
+            'role' => 'user'
+        ]);
 
+        $response = $this->put('/editar-perfil/', $this->withData([
+            'role' => 'admin',
+        ]));
 
+        $response->assertRedirect();
 
-//
-//    /** @test */
-//    function the_user_cannot_change_its_role()
-//    {
-//        $user = factory(User::class)->create([
-//            'role' => 'user'
-//        ]);
-//
-//        $response = $this->put('/editar-perfil/', $this->withData([
-//            'role' => 'admin',
-//        ]));
-//
-//        $response->assertRedirect();
-//
-//        $this->assertDatabaseHas('users', [
-//            'id' => $user->id,
-//            'role' => 'user',
-//        ]);
-//    }
-//
-//    /** @test */
-//    function the_user_cannot_change_its_password()
-//    {
-//        factory(User::class)->create([
-//            'password' => bcrypt('old123'),
-//        ]);
-//
-//        $response = $this->put('/editar-perfil/', $this->withData([
-//            'email' => 'duilio@styde.net',
-//            'password' => 'new456'
-//        ]));
-//
-//        $response->assertRedirect();
-//
-//        $this->assertCredentials([
-//            'email' => 'duilio@styde.net',
-//            'password' => 'old123',
-//        ]);
-//    }
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'role' => 'user',
+        ]);
+    }
+
+    /** @test */
+    function the_user_cannot_change_its_password()
+    {
+        factory(User::class)->create([
+            'password' => bcrypt('old123'),
+        ]);
+
+        $response = $this->put('/editar-perfil/', $this->withData([
+            'email' => 'duilio@styde.net',
+            'password' => 'new456'
+        ]));
+
+        $response->assertRedirect();
+
+        $this->assertCredentials([
+            'email' => 'duilio@styde.net',
+            'password' => 'old123',
+        ]);
+    }
 }

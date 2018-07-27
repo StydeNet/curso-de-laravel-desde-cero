@@ -24,11 +24,6 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 6 caracteres">
-            </div>
-
-            <div class="form-group">
                 <label for="bio">Bio:</label>
                 <textarea name="bio" class="form-control" id="bio">{{ old('bio', $user->profile->bio) }}</textarea>
             </div>
