@@ -27,8 +27,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/profesiones') }}">Profesiones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/habilidades') }}">Habilidades</a>
                 </li>
             </ul>
         </div>

@@ -29,3 +29,6 @@ Route::put('/editar-perfil/', 'ProfileController@update');
 
 // Professions
 Route::get('/profesiones/', 'ProfessionController@index');
+
+// Skills
+Route::get('/habilidades/', 'SkillController@index');
