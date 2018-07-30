@@ -26,3 +26,6 @@ Route::delete('/usuarios/{user}', 'UserController@destroy')->name('users.destroy
 Route::get('/editar-perfil/', 'ProfileController@edit');
 
 Route::put('/editar-perfil/', 'ProfileController@update');
+
+// Professions
+Route::get('/profesiones/', 'ProfessionController@index');
