@@ -12,6 +12,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Título</th>
+            <th scope="col">Perfiles</th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -20,12 +21,15 @@
             <tr>
                 <th scope="row">{{ $profession->id }}</th>
                 <td>{{ $profession->title }}</td>
+                <td>{{ $profession->profiles_count }}</td>
                 <td>
-                    {{--<form action="{{ route('users.destroy', $user) }}" method="POST">--}}
-                        {{--{{ csrf_field() }}--}}
-                        {{--{{ method_field('DELETE') }}--}}
-                        {{--<button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>--}}
-                    {{--</form>--}}
+                    @if ($profession->profiles_count == 0)
+                    <form action="{{ url("profesiones/{$profession->id}") }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
+                    </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

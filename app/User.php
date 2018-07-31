@@ -49,9 +49,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(UserProfile::class)->withDefault([
-            'bio' => 'Programador'
-        ]);
+        return $this->hasOne(UserProfile::class)->withDefault();
     }
 
     public function isAdmin()
