@@ -71,7 +71,8 @@
                 <th scope="col"># <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col" class="sort-asc">Nombre <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col">Correo <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col" class="th-actions">Acciones</th>
+                <th scope="col">Rol <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
+                <th scope="col" class="text-right th-actions">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -80,6 +81,7 @@
                 <td>{{ $user->id }}</td>
                 <th scope="row">{{ $user->name }}</th>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->role }}</td>
                 <td class="text-right">
                     @if ($user->trashed())
                         <form action="{{ route('users.destroy', $user) }}" method="POST">

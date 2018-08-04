@@ -2,6 +2,10 @@ body {
   padding-top: 60px;
 }
 
+.navbar-logo {
+  margin-right: 24px;
+}
+
 .table thead .th-actions {
   min-width: 120px;
 }
