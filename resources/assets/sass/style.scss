@@ -1,0 +1,83 @@
+// Overriding styles
+
+// Body
+$body-bg: #f5f8fa;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+body {
+    padding-top: 60px;
+}
+
+.table {
+    thead {
+        .th-actions {
+            min-width: 120px;
+        }
+
+        th {
+            .oi {
+                font-size: 8px;
+                display: none;
+                color: $brand-info;
+                margin: 0 0 0 12px;
+                transform: translateY(-2px);
+            }
+
+            &.sort-asc {
+                .oi-caret-top {
+                    display: inline-block;
+                }
+            }
+
+            &.sort-desc {
+                .oi-caret-bottom {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    tbody {
+        th {
+            vertical-align: middle;
+        }
+
+        td {
+            color: lighten($text-color, 20%);
+            vertical-align: middle;
+        }
+    }
+}
+
+.row-filters {
+    padding-bottom: 6px;
+}
+
+.form-dates {
+    justify-content: flex-end;
+
+    .input-group {
+        margin-left: 6px;
+        flex-basis: 140px;
+    }
+}
