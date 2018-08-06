@@ -36,6 +36,14 @@ body {
   vertical-align: middle;
 }
 
+.note {
+  display: block;
+  font-size: 0.75em;
+  line-height: 1;
+  font-weight: 200;
+  color: #a1a6a9;
+}
+
 .row-filters {
   padding-bottom: 6px;
 }
@@ -50,5 +58,62 @@ body {
   margin-left: 6px;
   -ms-flex-preferred-size: 140px;
       flex-basis: 140px;
+}
+
+.drop-skills {
+  position: relative;
+  overflow: visible;
+}
+
+.drop-skills .btn {
+  position: relative;
+  z-index: 0;
+}
+
+.skills-list {
+  position: absolute;
+  z-index: 1;
+  top: 99%;
+  left: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #fff;
+}
+
+.skills-list .form-check {
+  padding: 0 24px 0 32px;
+  height: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  position: relative;
+}
+
+.skills-list .form-check:hover {
+  background-color: #f2f2f2;
+}
+
+.skills-list .form-check input[type="checkbox"] {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+}
+
+.drop-skills:hover .skills-list {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  pointer-event: all;
+  opacity: 1;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+.drop-skills:hover .form-check {
+  padding: 8px 24px 8px 32px;
+  height: 40px;
 }
 
