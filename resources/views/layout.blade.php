@@ -21,7 +21,9 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Curso de Laravel</a>
+        <a class="navbar-logo" href="/">
+            <img src="/images/styde.png" alt="Styde" width="100" height="30">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,11 +46,8 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <div class="row mt-3">
-        <div class="col-8">
+        <div class="col-12">
             @yield('content')
-        </div>
-        <div class="col-4">
-            <p>&nbsp;</p>
         </div>
     </div>
 </main>
