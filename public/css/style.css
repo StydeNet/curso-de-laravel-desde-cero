@@ -36,10 +36,15 @@ body {
   vertical-align: middle;
 }
 
+.table tbody .skills th,
+.table tbody .skills td {
+  border: 0;
+}
+
 .note {
   display: block;
   font-size: 0.75em;
-  line-height: 1;
+  line-height: 1.25;
   font-weight: 200;
   color: #a1a6a9;
 }

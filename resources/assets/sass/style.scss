@@ -70,13 +70,20 @@ body {
             color: lighten($text-color, 20%);
             vertical-align: middle;
         }
+
+        .skills {
+            th,
+            td {
+                border: 0;
+            }
+        }
     }
 }
 
 .note {
     display: block;
     font-size: 0.75em;
-    line-height: 1;
+    line-height: 1.25;
     font-weight: 200;
     color: mix(#fff, $text-color, 40%);
 }
