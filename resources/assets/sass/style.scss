@@ -1,0 +1,157 @@
+// Overriding styles
+
+// Body
+$body-bg: #f5f8fa;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+body {
+    padding-top: 60px;
+}
+
+.navbar-logo {
+    margin-right: 24px;
+}
+
+.table {
+    thead {
+        .th-actions {
+            min-width: 120px;
+        }
+
+        th {
+            .oi {
+                font-size: 8px;
+                display: none;
+                color: $brand-info;
+                margin: 0 0 0 12px;
+                transform: translateY(-2px);
+            }
+
+            &.sort-asc {
+                .oi-caret-top {
+                    display: inline-block;
+                }
+            }
+
+            &.sort-desc {
+                .oi-caret-bottom {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    tbody {
+        th {
+            vertical-align: middle;
+        }
+
+        td {
+            color: lighten($text-color, 20%);
+            vertical-align: middle;
+        }
+
+        .skills {
+            th,
+            td {
+                border: 0;
+            }
+        }
+    }
+}
+
+.note {
+    display: block;
+    font-size: 0.75em;
+    line-height: 1.25;
+    font-weight: 200;
+    color: mix(#fff, $text-color, 40%);
+}
+
+.row-filters {
+    padding-bottom: 6px;
+}
+
+.form-dates {
+    justify-content: flex-end;
+
+    .input-group {
+        margin-left: 6px;
+        flex-basis: 140px;
+    }
+}
+
+.drop-skills {
+    position: relative;
+    overflow: visible;
+
+    .btn {
+        position: relative;
+        z-index: 0;
+    }
+}
+
+.skills-list {
+    position: absolute;
+    z-index: 1;
+    top: 99%;
+    left: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    background-color: #fff;
+
+    .form-check {
+        padding: 0 24px 0 32px;
+        height: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        justify-content: flex-start;
+        transition: all 0.15s ease-out;
+        position: relative;
+
+        &:hover {
+            background-color: #f2f2f2;
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            left: 12px;
+            top: 14px;
+        }
+    }
+}
+
+.drop-skills:hover {
+    .skills-list {
+        transform: translateY(0);
+        pointer-event: all;
+        opacity: 1;
+        border-color: rgba(0, 0, 0, 0.125)
+    }
+
+    .form-check {
+        padding: 8px 24px 8px 32px;
+        height: 40px;
+    }
+}
