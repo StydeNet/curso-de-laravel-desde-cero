@@ -29,6 +29,8 @@
     </td>
 </tr>
 <tr class="skills">
-    <td colspan="1"><span class="note">Profesion aqui</span></td>
-    <td colspan="4"><span class="note">Lorem, Ipsum dolor, Sit amet, Consectetur Adipisicing elit</span></td>
+    <td colspan="1">
+        <span class="note">{{ $user->profile->profession->title }}</span>
+    </td>
+    <td colspan="4"><span class="note">{{ $user->skills->implode('name', ', ') ?: 'Sin habilidades :(' }}</span></td>
 </tr>
