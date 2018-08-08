@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderByDesc('created_at')->simplePaginate();
+        $users = User::orderByDesc('created_at')->paginate();
 
         $title = 'Listado de usuarios';
 
