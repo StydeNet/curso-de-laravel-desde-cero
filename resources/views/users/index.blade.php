@@ -40,12 +40,13 @@
                     &nbsp;
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Rol
+                            Profesión
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Todos</a>
-                            <a class="dropdown-item" href="#">Usuario</a>
-                            <a class="dropdown-item" href="#">Admin</a>
+                            <a class="dropdown-item" href="#">Desarrollador back-end</a>
+                            <a class="dropdown-item" href="#">Desarrollador front-end</a>
+                            <a class="dropdown-item" href="#">Diseñador web</a>
                         </div>
                     </div>
                     &nbsp;
@@ -84,15 +85,9 @@
                     <label for="date_start" class="form-label-sm">Fecha</label>&nbsp;
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Desde">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-sm"><span class="oi oi-calendar"></span></button>
-                        </div>
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Hasta">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-sm"><span class="oi oi-calendar"></span></button>
-                        </div>
+                        <input type="text" class="form-control form-control-sm" name="date_end" id="date_end" placeholder="Hasta">
                     </div> 
                     &nbsp;
                     <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
@@ -108,50 +103,16 @@
                 <th scope="col"># <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col" class="sort-desc">Nombre <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col">Correo <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Rol <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col">Fechas <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col" class="text-right th-actions">Acciones</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($users as $user)
-            <tr>
-                <td rowspan="2">{{ $user->id }}</td>
-                <th scope="row">
-                    {{ $user->name }} 
-                    <span class="note">Nombre de Empresa</span>
-                </th>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->role }}</td>
-                <td>
-                    <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
-                    <span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>
-                </td>
-                <td class="text-right">
-                    @if ($user->trashed())
-                        <form action="{{ route('users.destroy', $user) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-link"><span class="oi oi-circle-x"></span></button>
-                        </form>
-                    @else
-                        <form action="{{ route('users.trash', $user) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <a href="{{ route('users.show', $user) }}" class="btn btn-outline-secondary btn-sm"><span class="oi oi-eye"></span></a>
-                            <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-secondary btn-sm"><span class="oi oi-pencil"></span></a>
-                            <button type="submit" class="btn btn-outline-danger btn-sm"><span class="oi oi-trash"></span></button>
-                        </form>
-                    @endif
-                </td>
-            </tr>
-            <tr class="skills">
-                <td colspan="1"><span class="note">Profesion aqui</span></td>
-                <td colspan="4"><span class="note">Lorem, Ipsum dolor, Sit amet, Consectetur Adipisicing elit</span></td>
-            </tr>
-            @endforeach
+                @each('users._row', $users, 'user')
             </tbody>
         </table>
+
+        {{ $users->links() }}
     </div>
     @else
         <p>No hay usuarios registrados.</p>

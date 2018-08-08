@@ -85,7 +85,7 @@ body {
     font-size: 0.75em;
     line-height: 1.25;
     font-weight: 200;
-    color: mix(#fff, $text-color, 40%);
+    color: mix(#fff, $text-color, 20%);
 }
 
 .row-filters {
@@ -153,5 +153,36 @@ body {
     .form-check {
         padding: 8px 24px 8px 32px;
         height: 40px;
+    }
+}
+
+.status {
+    display: inline-block;
+    margin: 0 0 0 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+
+    &.st-active {
+        background-color: green;
+    }
+
+    &.st-inactive {
+        background-color: red;
+    }
+}
+
+.gj-datepicker-bootstrap [role="right-icon"] button {
+    background-color: #5a6268;
+
+    &:hover {
+        background-color: mix(#000, #5a6268, 20%);
+    }
+
+    .material-icons,
+    .gj-icon {
+        font-size: 18px;
+        top: 6px;
+        color: #fff;
     }
 }
