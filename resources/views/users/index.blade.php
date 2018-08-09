@@ -11,7 +11,6 @@
     </div>
 
     @if ($users->isNotEmpty())
-
     <form method="get" action="/usuarios">
         <div class="row row-filters">
             <div class="col-12">
@@ -41,12 +40,13 @@
                     &nbsp;
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Rol
+                            Profesión
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Todos</a>
-                            <a class="dropdown-item" href="#">Usuario</a>
-                            <a class="dropdown-item" href="#">Admin</a>
+                            <a class="dropdown-item" href="#">Desarrollador back-end</a>
+                            <a class="dropdown-item" href="#">Desarrollador front-end</a>
+                            <a class="dropdown-item" href="#">Diseñador web</a>
                         </div>
                     </div>
                     &nbsp;
@@ -85,15 +85,9 @@
                     <label for="date_start" class="form-label-sm">Fecha</label>&nbsp;
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Desde">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-sm"><span class="oi oi-calendar"></span></button>
-                        </div>
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Hasta">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-sm"><span class="oi oi-calendar"></span></button>
-                        </div>
+                        <input type="text" class="form-control form-control-sm" name="date_end" id="date_end" placeholder="Hasta">
                     </div> 
                     &nbsp;
                     <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
@@ -109,7 +103,6 @@
                 <th scope="col"># <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col" class="sort-desc">Nombre <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col">Correo <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Rol <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col">Fechas <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
                 <th scope="col" class="text-right th-actions">Acciones</th>
             </tr>

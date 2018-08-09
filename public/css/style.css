@@ -46,7 +46,7 @@ body {
   font-size: 0.75em;
   line-height: 1.25;
   font-weight: 200;
-  color: #a1a6a9;
+  color: #82898c;
 }
 
 .row-filters {
@@ -120,5 +120,36 @@ body {
 .drop-skills:hover .form-check {
   padding: 8px 24px 8px 32px;
   height: 40px;
+}
+
+.status {
+  display: inline-block;
+  margin: 0 0 0 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+}
+
+.status.st-active {
+  background-color: green;
+}
+
+.status.st-inactive {
+  background-color: red;
+}
+
+.gj-datepicker-bootstrap [role="right-icon"] button {
+  background-color: #5a6268;
+}
+
+.gj-datepicker-bootstrap [role="right-icon"] button:hover {
+  background-color: #484e53;
+}
+
+.gj-datepicker-bootstrap [role="right-icon"] button .material-icons,
+.gj-datepicker-bootstrap [role="right-icon"] button .gj-icon {
+  font-size: 18px;
+  top: 6px;
+  color: #fff;
 }
 
