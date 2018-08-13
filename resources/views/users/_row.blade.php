@@ -3,7 +3,7 @@
     <th scope="row">
         {{ $user->name }}
     </th>
-    <td>Nombre de la empresa</td>
+    <td>{{ $user->team->name }}</td>
     <td>{{ $user->email }}</td>
     <td>{{ $user->role }}</td>
     {{--<td>--}}

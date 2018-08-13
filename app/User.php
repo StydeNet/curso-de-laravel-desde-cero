@@ -39,6 +39,11 @@ class User extends Authenticatable
         return static::where(compact('email'))->first();
     }
 
+    public function team()
+    {
+        return $this->belongsTo(Team::class)->withDefault();
+    }
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'user_skill');
