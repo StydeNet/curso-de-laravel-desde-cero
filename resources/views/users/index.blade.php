@@ -10,9 +10,9 @@
         </p>
     </div>
 
-    @if ($users->isNotEmpty())
-
     @include('users._filters')
+
+    @if ($users->isNotEmpty())
 
     <div class="table-responsive-lg">
         <table class="table table-sm">

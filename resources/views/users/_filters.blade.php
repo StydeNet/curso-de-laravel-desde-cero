@@ -1,4 +1,4 @@
-<form method="get" action="/usuarios">
+<form method="get" action="{{ url('usuarios') }}">
     {{--<div class="row row-filters">--}}
         {{--<div class="col-12">--}}
             {{--<div class="form-check form-check-inline">--}}
@@ -19,9 +19,9 @@
         <div class="col-md-6">
             <div class="form-inline form-search">
                 <div class="input-group">
-                    <input type="search" class="form-control form-control-sm" placeholder="Buscar...">
+                    <input type="search" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="Buscar...">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary btn-sm"><span class="oi oi-magnifying-glass"></span></button>
+                        <button type="submit" class="btn btn-secondary btn-sm"><span class="oi oi-magnifying-glass"></span></button>
                     </div>
                 </div>
                 &nbsp;
