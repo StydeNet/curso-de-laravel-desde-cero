@@ -10,10 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
-            ->when(request('search'), function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%");
-            })
+            ->search(request('search'))
             ->orderByDesc('created_at')
             ->paginate();
 
