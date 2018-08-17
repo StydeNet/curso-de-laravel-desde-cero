@@ -10,6 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
+            ->with('team')
             ->search(request('search'))
             ->orderByDesc('created_at')
             ->paginate();
@@ -18,6 +19,14 @@ class UserController extends Controller
 
         return view('users.index', compact('title', 'users'));
     }
+
+
+
+
+
+
+
+
 
     public function trashed()
     {
