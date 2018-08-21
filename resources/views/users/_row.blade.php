@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <tr>
     <td>{{ $user->id }}</td>
     <th scope="row">
@@ -13,20 +6,6 @@
     <td>{{ $user->team->name }}</td>
     <td>{{ $user->email }}</td>
     <td>{{ $user->role }}</td>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {{--<td>--}}
         {{--<span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>--}}
         {{--<span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>--}}
