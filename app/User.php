@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,7 +52,9 @@ class User extends Authenticatable
             return;
         }
 
-        $query->where('first_name', 'like', "%{$search}%")
+        //$query->where(DB::raw('CONCAT(first_name, " ", last_name)'), 'like', "%{$search}%")
+
+        $query->whereRaw('CONCAT(first_name, " ", last_name) like ?', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhereHas('team', function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%");

@@ -14,7 +14,7 @@
 
     @if ($users->isNotEmpty())
 
-    <p>Viendo página {{ $users->currentPage() }} de {{ $users->lastPage() }}</p>
+    {{--<p>Viendo página {{ $users->currentPage() }} de {{ $users->lastPage() }}</p>--}}
 
     <div class="table-responsive-lg">
         <table class="table table-sm">
