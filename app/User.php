@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, Searchable;
 
     protected $guarded = [];
 
@@ -45,16 +46,26 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function scopeSearch($query, $search)
+    public function toSearchableArray()
     {
-        if (empty ($search)) {
-            return;
-        }
-
-        $query->where('name', 'like', "%{$search}%")
-            ->orWhere('email', 'like', "%{$search}%")
-            ->orWhereHas('team', function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%");
-            });
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'team' => $this->team->name,
+        ];
     }
+
+//
+//    public function scopeSearch($query, $search)
+//    {
+//        if (empty ($search)) {
+//            return;
+//        }
+//
+//        $query->where('name', 'like', "%{$search}%")
+//            ->orWhere('email', 'like', "%{$search}%")
+//            ->orWhereHas('team', function ($query) use ($search) {
+//                $query->where('name', 'like', "%{$search}%");
+//            });
+//    }
 }
