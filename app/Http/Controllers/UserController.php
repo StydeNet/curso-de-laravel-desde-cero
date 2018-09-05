@@ -15,11 +15,15 @@ class UserController extends Controller
             ->orderByDesc('created_at')
             ->paginate();
 
-        $users->appends(request(['search']))->fragment('table');
+        $users->appends(request(['search']));
 
-        $title = 'Listado de usuarios';
-
-        return view('users.index', compact('title', 'users'));
+        return view('users.index', [
+            'users' => $users,
+            'title' => 'Listado de usuarios',
+            'roles' => trans('users.filters.roles'),
+            'skills' => Skill::orderBy('name')->get(),
+            'states' => trans('users.filters.states'),
+        ]);
     }
 
     public function trashed()
