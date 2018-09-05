@@ -11,7 +11,7 @@ class ListProfessionsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    function it_shows_the_users_list()
+    function it_shows_the_professions_list()
     {
         factory(Profession::class)->create(['title' => 'Diseñador']);
 

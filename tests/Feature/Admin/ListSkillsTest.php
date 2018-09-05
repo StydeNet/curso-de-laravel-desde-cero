@@ -11,7 +11,7 @@ class ListSkillsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    function it_shows_the_users_list()
+    function it_shows_the_skills_list()
     {
         factory(Skill::class)->create(['name' => 'HTML']);
 
