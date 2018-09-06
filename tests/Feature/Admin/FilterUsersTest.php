@@ -30,7 +30,7 @@ class FilterUsersTest extends TestCase
         $activeUser = factory(User::class)->create();
         $inactiveUser = factory(User::class)->create();
 
-        $response = $this->get('usuarios?state=active');
+        $response = $this->get('usuarios?state=inactive');
 
         $response->assertStatus(200);
 

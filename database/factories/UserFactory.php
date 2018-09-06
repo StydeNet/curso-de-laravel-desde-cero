@@ -22,3 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'role' => 'user',
     ];
 });
+
+$factory->afterCreating(App\User::class, function ($user, $faker) {
+    $user->profile()->save(factory(App\UserProfile::class)->make());
+});

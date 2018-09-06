@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Profession;
+use App\User;
 use App\UserProfile;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,6 +34,7 @@ class DeleteProfessionsTest extends TestCase
 
         $profile = factory(UserProfile::class)->create([
             'profession_id' => $profession->id,
+            'user_id' => factory(User::class)->create()->id,
         ]);
 
         $response = $this->delete("profesiones/{$profession->id}");

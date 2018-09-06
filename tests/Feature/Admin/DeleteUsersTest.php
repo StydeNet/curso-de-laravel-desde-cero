@@ -16,10 +16,6 @@ class DeleteUsersTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        factory(UserProfile::class)->create([
-            'user_id' => $user->id,
-        ]);
-
         $this->patch("usuarios/{$user->id}/papelera")
             ->assertRedirect('usuarios');
 
@@ -45,10 +41,6 @@ class DeleteUsersTest extends TestCase
             'deleted_at' => now()
         ]);
 
-        factory(UserProfile::class)->create([
-            'user_id' => $user->id,
-        ]);
-
         $this->delete("usuarios/{$user->id}")
             ->assertRedirect('usuarios/papelera');
 
@@ -62,10 +54,6 @@ class DeleteUsersTest extends TestCase
 
         $user = factory(User::class)->create([
             'deleted_at' => null,
-        ]);
-
-        factory(UserProfile::class)->create([
-            'user_id' => $user->id,
         ]);
 
         $this->delete("usuarios/{$user->id}")
