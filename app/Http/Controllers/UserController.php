@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
-            ->with('team')
+            ->with('team', 'skills', 'profile.profession')
             ->search(request('search'))
             ->orderByDesc('created_at')
             ->paginate();
@@ -23,6 +23,7 @@ class UserController extends Controller
             'roles' => trans('users.filters.roles'),
             'skills' => Skill::orderBy('name')->get(),
             'states' => trans('users.filters.states'),
+            'checkedSkills' => collect(request('skills')),
         ]);
     }
 

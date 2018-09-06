@@ -4,8 +4,8 @@
             @foreach ($states as $value => $text)
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="state"
-                           id="state_{{ $value ?: 'all' }}" value="{{ $value }}" {{ $value == request('state') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="state_{{ $value ?: 'all' }}">{{ $text }}</label>
+                           id="state_{{ $value }}" value="{{ $value }}" {{ $value == request('state') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="state_{{ $value }}">{{ $text }}</label>
                 </div>
             @endforeach
         </div>
@@ -35,7 +35,7 @@
                                    class="form-check-input"
                                    id="skill_{{ $skill->id }}"
                                    value="{{ $skill->id }}"
-                                   {{ is_array(request('skills')) && in_array($skill->id, request('skills')) ? 'checked' : '' }}>
+                                   {{ $checkedSkills->contains($skill->id) ? 'checked' : '' }}>
                             <label class="form-check-label" for="skill_{{ $skill->id }}">{{ $skill->name }}</label>
                         </div>
                     @endforeach
