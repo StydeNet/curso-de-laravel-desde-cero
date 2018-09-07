@@ -1,7 +1,12 @@
 <tr>
     <td>{{ $user->id }}</td>
     <th scope="row">
-        {{ $user->name }} {{ $user->status }} <span class="status st-active"></span> <span class="status st-inactive"></span>
+        {{ $user->name }} {{ $user->status }}
+        @if (rand(0, 2))
+            <span class="status st-active"></span>
+        @else
+            <span class="status st-inactive"></span>
+        @endif
         <span class="note">{{ $user->team->name }}</span>
     </th>
     <td>{{ $user->email }}</td>
