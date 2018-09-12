@@ -68,4 +68,16 @@ class User extends Authenticatable
             return $query->where('active', false);
         }
     }
+
+    public function setStateAttribute($value)
+    {
+        $this->attributes['active'] = $value == 'active';
+    }
+
+    public function getStateAttribute()
+    {
+        if ($this->active !== null) {
+            return $this->active ? 'active' : 'inactive';
+        }
+    }
 }
