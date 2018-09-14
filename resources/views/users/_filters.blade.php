@@ -1,7 +1,7 @@
 <form method="get" action="{{ url('usuarios') }}">
     <div class="row row-filters">
         <div class="col-md-6">
-            @foreach ($states as $value => $text)
+            @foreach (trans('users.filters.states') as $value => $text)
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="state"
                            id="state_{{ $value }}" value="{{ $value }}" {{ $value == request('state') ? 'checked' : '' }}>
@@ -17,7 +17,7 @@
                 &nbsp;
                 <div class="btn-group">
                     <select name="role" id="role" class="select-field">
-                        @foreach($roles as $value => $text)
+                        @foreach(trans('users.filters.roles') as $value => $text)
                             <option value="{{ $value }}"{{ request('role') == $value ? ' selected' : '' }}>{{ $text }}</option>
                         @endforeach
                     </select>

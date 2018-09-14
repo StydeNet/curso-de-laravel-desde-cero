@@ -69,6 +69,13 @@ class User extends Authenticatable
         }
     }
 
+    public function scopeByRole($query, $role)
+    {
+        if (in_array($role, ['user', 'admin'])) {
+            $query->where('role', $role);
+        }
+    }
+
     public function setStateAttribute($value)
     {
         $this->attributes['active'] = $value == 'active';

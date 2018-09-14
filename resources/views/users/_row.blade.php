@@ -2,7 +2,10 @@
     <td>{{ $user->id }}</td>
     <th scope="row">
         {{ $user->name }} {{ $user->status }}
-            <span class="status st-{{ $user->state }}"></span>
+        @if ($user->role != 'user')
+            ({{ $user->role }})
+        @endif
+        <span class="status st-{{ $user->state }}"></span>
         <span class="note">{{ $user->team->name }}</span>
     </th>
     <td>{{ $user->email }}</td>
