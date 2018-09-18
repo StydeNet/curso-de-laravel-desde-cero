@@ -31,6 +31,11 @@ class User extends Authenticatable
         return new UserQuery($query);
     }
 
+    public function scopeFilterBy($query, array $filters)
+    {
+        return (new UserFilter())->applyTo($query, $filters);
+    }
+
     public function team()
     {
         return $this->belongsTo(Team::class)->withDefault();
