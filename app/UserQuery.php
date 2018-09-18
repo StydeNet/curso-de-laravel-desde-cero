@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
 {
+    use FiltersQueries;
+
     public function findByEmail($email)
     {
         return static::where(compact('email'))->first();
     }
 
-    public function search($search)
+    protected function filterRules(): array
     {
-        if (empty ($search)) {
-            return $this;
-        }
+        return [
+            'search' => 'filled',
+            'state' => 'in:active,inactive',
+            'role' => 'in:admin,user',
+        ];
+    }
 
+    public function filterBySearch($search)
+    {
         return $this->where('name', 'like', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhereHas('team', function ($query) use ($search) {
@@ -24,25 +31,8 @@ class UserQuery extends Builder
             });
     }
 
-    public function byState($state)
+    public function filterByState($state)
     {
-        if ($state == 'active') {
-            return $this->where('active', true);
-        }
-
-        if ($state == 'inactive') {
-            return $this->where('active', false);
-        }
-
-        return $this;
-    }
-
-    public function byRole($role)
-    {
-        if (in_array($role, ['user', 'admin'])) {
-            $this->where('role', $role);
-        }
-
-        return $this;
+        return $this->where('active', $state == 'active');
     }
 }
