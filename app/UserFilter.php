@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+
 class UserFilter extends QueryFilter
 {
     public function rules(): array
@@ -10,6 +12,7 @@ class UserFilter extends QueryFilter
             'search' => 'filled',
             'state' => 'in:active,inactive',
             'role' => 'in:admin,user',
+            'skills' => 'array|exists:skills,id',
         ];
     }
 
@@ -25,5 +28,15 @@ class UserFilter extends QueryFilter
     public function filterByState($query, $state)
     {
         return $query->where('active', $state == 'active');
+    }
+
+    public function filterBySkills($query, $skills)
+    {
+        $subquery = DB::table('user_skill AS s')
+            ->selectRaw('COUNT(`s`.`id`)')
+            ->whereColumn('s.user_id', 'users.id')
+            ->whereIn('skill_id', $skills);
+
+        $query->whereQuery($subquery, count($skills));
     }
 }
