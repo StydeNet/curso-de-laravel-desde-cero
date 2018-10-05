@@ -46,12 +46,12 @@
 
         <div class="col-md-6 text-right">
             <div class="form-inline form-dates">
-                <label for="date_start" class="form-label-sm">Fecha</label>&nbsp;
+                <label for="from" class="form-label-sm">Fecha</label>&nbsp;
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Desde">
+                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="Desde" value="{{ request('from') }}">
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="date_end" id="date_end" placeholder="Hasta">
+                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="Hasta" value="{{ request('to') }}">
                 </div>
                 &nbsp;
                 <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>

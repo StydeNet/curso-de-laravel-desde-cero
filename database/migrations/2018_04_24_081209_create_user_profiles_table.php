@@ -24,7 +24,7 @@ class CreateUserProfilesTable extends Migration
                 ->references('id')
                 ->on('professions');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
