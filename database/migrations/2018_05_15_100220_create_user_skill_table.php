@@ -16,7 +16,7 @@ class CreateUserSkillTable extends Migration
         Schema::create('user_skill', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id'); // UNSIGNED BIG INT
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
