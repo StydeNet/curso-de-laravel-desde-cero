@@ -6,6 +6,9 @@ use Tests\TestCase;
 use App\{Profession, Skill, User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @testdox Admin / Creación de usuarios
+ */
 class CreateUsersTest extends TestCase
 {
     use RefreshDatabase;
@@ -21,7 +24,10 @@ class CreateUsersTest extends TestCase
         'state' => 'active',
     ];
 
-    /** @test */
+    /**
+     * @test
+     * @testdox Carga el formulario para crear usuarios
+     **/
     function it_loads_the_new_users_page()
     {
         $profession = factory(Profession::class)->create();

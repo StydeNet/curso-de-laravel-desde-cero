@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="Tests\Feature\Admin\CreateUsersTest">Admin / Creación de usuarios</h2>
+        <ul>
+            <li style="color: #555753;">✓ Carga el formulario para crear usuarios</li>
+            <li style="color: #555753;">✓ It creates a new user</li>
+            <li style="color: #555753;">✓ The twitter field is optional</li>
+            <li style="color: #555753;">✓ The role field is optional</li>
+            <li style="color: #555753;">✓ The role must be valid</li>
+            <li style="color: #555753;">✓ The profession id field is optional</li>
+            <li style="color: #555753;">✓ The user is redirected to the previous page when the validation fails</li>
+            <li style="color: #555753;">✓ The name is required</li>
+            <li style="color: #555753;">✓ The email is required</li>
+            <li style="color: #555753;">✓ The email must be valid</li>
+            <li style="color: #555753;">✓ The email must be unique</li>
+            <li style="color: #555753;">✓ The password is required</li>
+            <li style="color: #555753;">✓ The profession must be valid</li>
+            <li style="color: #555753;">✓ Only not deleted professions can be selected</li>
+            <li style="color: #555753;">✓ The skills must be an array</li>
+            <li style="color: #555753;">✓ The skills must be valid</li>
+            <li style="color: #555753;">✓ The state is required</li>
+            <li style="color: #555753;">✓ The state must be valid</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\DeleteProfessionsTest">Feature\Admin\DeleteProfessions</h2>
+        <ul>
+            <li style="color: #555753;">✓ It deletes a profession</li>
+            <li style="color: #555753;">✓ A profession associated to a profile cannot be deleted</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\DeleteUsersTest">Feature\Admin\DeleteUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ It sends a user to the trash</li>
+            <li style="color: #555753;">✓ It completely deletes a user</li>
+            <li style="color: #555753;">✓ It cannot delete a user that is not in the trash</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\FilterUsersTest">Feature\Admin\FilterUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ Filter users by state active</li>
+            <li style="color: #555753;">✓ Filter users by state inactive</li>
+            <li style="color: #555753;">✓ Filter users by role admin</li>
+            <li style="color: #555753;">✓ Filter users by role user</li>
+            <li style="color: #555753;">✓ Filter users by skill</li>
+            <li style="color: #555753;">✓ Filter users created from date</li>
+            <li style="color: #555753;">✓ Filter users created to date</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\ListProfessionsTest">Feature\Admin\ListProfessions</h2>
+        <ul>
+            <li style="color: #555753;">✓ It shows the professions list</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\ListSkillsTest">Feature\Admin\ListSkills</h2>
+        <ul>
+            <li style="color: #555753;">✓ It shows the skills list</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\ListUsersTest">Feature\Admin\ListUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ It shows the users list</li>
+            <li style="color: #555753;">✓ It paginates the users</li>
+            <li style="color: #555753;">✓ It shows a default message if the users list is empty</li>
+            <li style="color: #555753;">✓ It shows the deleted users</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\SearchUsersTest">Feature\Admin\SearchUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ Search users by name</li>
+            <li style="color: #555753;">✓ Show results with a partial search by name</li>
+            <li style="color: #555753;">✓ Search users by email</li>
+            <li style="color: #555753;">✓ Show results with a partial search by email</li>
+            <li style="color: #555753;">✓ Search users by team name</li>
+            <li style="color: #555753;">✓ Partial search by team name</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\ShowUsersTest">Feature\Admin\ShowUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ It displays the users details</li>
+            <li style="color: #555753;">✓ It displays a 404 error if the user is not found</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\UpdateUsersTest">Feature\Admin\UpdateUsers</h2>
+        <ul>
+            <li style="color: #555753;">✓ It loads the edit user page</li>
+            <li style="color: #555753;">✓ It updates a user</li>
+            <li style="color: #555753;">✓ It detaches all the skills if none is checked</li>
+            <li style="color: #555753;">✓ The name is required</li>
+            <li style="color: #555753;">✓ The email must be valid</li>
+            <li style="color: #555753;">✓ The email must be unique</li>
+            <li style="color: #555753;">✓ The users email can stay the same</li>
+            <li style="color: #555753;">✓ The password is optional</li>
+            <li style="color: #555753;">✓ The role is required</li>
+            <li style="color: #555753;">✓ The state is required</li>
+            <li style="color: #555753;">✓ The state must be valid</li>
+        </ul>
+        <h2 id="Tests\Feature\Admin\UsersProfileTest">Feature\Admin\UsersProfile</h2>
+        <ul>
+            <li style="color: #555753;">✓ A user can edit its profile</li>
+            <li style="color: #555753;">✓ The user cannot change its role</li>
+            <li style="color: #555753;">✓ The user cannot change its password</li>
+        </ul>
+    </body>
+</html>
