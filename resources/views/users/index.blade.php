@@ -26,9 +26,9 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col"># <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col" class="sort-desc">Nombre <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Correo <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Fechas <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
+                <th scope="col" class="sort-desc"><a href="#" class="link-sortable">Nombre</a></th>
+                <th scope="col"><a href="#" class="link-sortable link-sorted-up">Correo</a></th>
+                <th scope="col"><a href="#" class="link-sortable link-sorted-down">Fechas</a></th>
                 <th scope="col" class="text-right th-actions">Acciones</th>
             </tr>
             </thead>

@@ -211,3 +211,32 @@ body {
         color: #fff;
     }
 }
+
+// Sortable tables
+.link-sortable {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding-right: 16px;
+    opacity: 0.8;
+    background: {
+        image: url('../images/sortable.png');
+        repeat: no-repeat;
+        position: 100% 50%;
+        size: 12px 12px;
+    }
+
+    &:hover {
+        text-decoration: underline;
+        color: #fff;
+        opacity: 1;
+    }
+
+    &.link-sorted-up {
+        background-image: url('../images/sorted-up.png');
+    }
+
+    &.link-sorted-down {
+        background-image: url('../images/sorted-down.png');
+    }
+}
