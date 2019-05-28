@@ -1,10 +1,12 @@
 // Overriding styles
+$black: #000;
+$white: #fff;
 
 // Body
 $body-bg: #f5f8fa;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #1b739a;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -31,6 +33,32 @@ body {
 
 .navbar-logo {
     margin-right: 24px;
+}
+
+.btn-primary {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    
+    &:hover {
+        background-color: mix($black, $brand-primary, 20%);
+        border-color: mix($black, $brand-primary, 20%);
+    }
+}
+
+.pagination {
+    .page-item {
+        &.active {
+            .page-link {
+                color: $white;
+                background-color: $brand-primary;
+                border-color: $brand-primary;
+            }
+        }
+
+        .page-link {
+            color: $brand-primary;
+        }
+    }
 }
 
 .table {

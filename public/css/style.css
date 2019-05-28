@@ -7,6 +7,26 @@ body {
   margin-right: 24px;
 }
 
+.btn-primary {
+  background-color: #1b739a;
+  border-color: #1b739a;
+}
+
+.btn-primary:hover {
+  background-color: #165c7b;
+  border-color: #165c7b;
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: #1b739a;
+  border-color: #1b739a;
+}
+
+.pagination .page-item .page-link {
+  color: #1b739a;
+}
+
 .table {
   margin: 24px 0;
   background-color: #fff;
