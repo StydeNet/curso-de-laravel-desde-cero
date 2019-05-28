@@ -55,7 +55,7 @@
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">https://styde.net</span>
+        <span>https://styde.net</span>
     </div>
 </footer>
 

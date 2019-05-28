@@ -1,5 +1,6 @@
 body {
   padding-top: 60px;
+  background-color: #f5f8fa;
 }
 
 .navbar-logo {
@@ -8,6 +9,7 @@ body {
 
 .table {
   margin: 24px 0;
+  background-color: #fff;
   border-bottom: 1px solid #DEE2E5;
 }
 
@@ -106,7 +108,7 @@ body {
 .skills-list {
   position: absolute;
   z-index: 1;
-  top: 99%;
+  top: 100%;
   left: 0;
   padding: 0;
   border: 1px solid transparent;
@@ -187,6 +189,14 @@ body {
   text-decoration: none;
   padding-right: 16px;
   opacity: 0.8;
+}
+
+.link-sortable .icon-sort {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
   background-image: url(/images/sortable.png?2e4574829d4483987fad5369711ce884);
   background-repeat: no-repeat;
   background-position: 100% 50%;
@@ -199,11 +209,34 @@ body {
   opacity: 1;
 }
 
-.link-sortable.link-sorted-up {
+.link-sortable.link-sorted-up .icon-sort {
   background-image: url(/images/sorted-up.png?278f9929cda2fc7341b655971fa5a96c);
 }
 
-.link-sortable.link-sorted-down {
+.link-sortable.link-sorted-down .icon-sort {
   background-image: url(/images/sorted-down.png?892a04a6217585a4080bd3228913fdfb);
+}
+
+.footer {
+  margin-top: 2rem;
+  background-color: #e0eaf1;
+  padding: 1rem 0;
+  color: rgba(99, 107, 111, 0.75);
+  -webkit-box-shadow: 0 2px 6px inset rgba(142, 180, 203, 0.5);
+          box-shadow: 0 2px 6px inset rgba(142, 180, 203, 0.5);
+}
+
+@media (min-width: 980px) {
+  main.container {
+    min-height: 80vh;
+  }
+
+  .card-body {
+    padding: 1.25rem 2.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 2rem;
+  }
 }
 
