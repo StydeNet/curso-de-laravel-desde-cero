@@ -26,9 +26,9 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col" class="sort-desc"><a href="#" class="link-sortable">Nombre <i class="icon-sort"></i></a></th>
-                <th scope="col"><a href="#" class="link-sortable link-sorted-up">Correo <i class="icon-sort"></i></a></th>
-                <th scope="col"><a href="#" class="link-sortable link-sorted-down">Fechas <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="#" class="{{ $sortable->classes('name') }}">Nombre <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="#" class="{{ $sortable->classes('email') }}">Correo <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="#" class="{{ $sortable->classes('created_at') }}">Fechas <i class="icon-sort"></i></a></th>
                 <th scope="col" class="text-right th-actions">Acciones</th>
             </tr>
             </thead>
