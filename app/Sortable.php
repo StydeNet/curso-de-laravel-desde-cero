@@ -44,7 +44,7 @@ class Sortable
         if ($this->isSortingBy($column, 'desc')) {
             return 'link-sortable link-sorted-down';
         }
--
+
         return 'link-sortable';
     }
 
