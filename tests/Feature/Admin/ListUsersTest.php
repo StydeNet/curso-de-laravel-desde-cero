@@ -147,6 +147,45 @@ class ListUsersTest extends TestCase
     }
 
     /** @test */
+    function invalid_order_query_data_is_ignored_and_the_default_order_is_used_instead()
+    {
+        factory(User::class)->create(['name' => 'John Doe', 'created_at' => now()->subDays(2)]);
+        factory(User::class)->create(['name' => 'Jane Doe', 'created_at' => now()->subDays(5)]);
+        factory(User::class)->create(['name' => 'Richard Roe', 'created_at' => now()->subDays(3)]);
+
+        $this->get('/usuarios?order=id&direction=asc')
+            ->assertSeeInOrder([
+                'John Doe',
+                'Richard Roe',
+                'Jane Doe',
+            ]);
+
+        $this->get('/usuarios?order=invalid_column&direction=desc')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'John Doe',
+                'Richard Roe',
+                'Jane Doe',
+            ]);
+    }
+
+    /** @test */
+    function invalid_direction_query_data_is_ignored_and_the_default_direction_is_used_instead()
+    {
+        factory(User::class)->create(['name' => 'John Doe']);
+        factory(User::class)->create(['name' => 'Jane Doe']);
+        factory(User::class)->create(['name' => 'Richard Roe']);
+
+        $this->get('/usuarios?order=name&direction=down')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'Jane Doe',
+                'John Doe',
+                'Richard Roe',
+            ]);
+    }
+
+    /** @test */
     function it_shows_a_default_message_if_the_users_list_is_empty()
     {
         $this->get('/usuarios')

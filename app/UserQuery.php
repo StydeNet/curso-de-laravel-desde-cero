@@ -8,6 +8,4 @@ class UserQuery extends QueryBuilder
     {
         return $this->where(compact('email'))->first();
     }
-
-
 }
