@@ -2,9 +2,10 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
+use App\Rules\SortableColumn;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class UserFilter extends QueryFilter
 {
@@ -21,7 +22,7 @@ class UserFilter extends QueryFilter
             'skills' => 'array|exists:skills,id',
             'from' => 'date_format:d/m/Y',
             'to' => 'date_format:d/m/Y',
-            'order' => 'in:name,email,date,name-desc,email-desc,date-desc',
+            'order' => [new SortableColumn(['name', 'email', 'date'])],
         ];
     }
 
@@ -67,11 +68,9 @@ class UserFilter extends QueryFilter
 
     public function order($query, $value)
     {
-        if (Str::endsWith($value, '-desc')) {
-            $query->orderByDesc($this->getColumnName(Str::substr($value, 0, -5)));
-        } else {
-            $query->orderBy($this->getColumnName($value));
-        }
+        [$column, $direction] = Sortable::info($value);
+
+        $query->orderBy($this->getColumnName($column), $direction);
     }
 
     protected function getColumnName($alias)

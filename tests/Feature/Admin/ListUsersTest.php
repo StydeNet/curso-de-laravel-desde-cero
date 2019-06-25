@@ -153,14 +153,39 @@ class ListUsersTest extends TestCase
         factory(User::class)->create(['name' => 'Jane Doe', 'created_at' => now()->subDays(5)]);
         factory(User::class)->create(['name' => 'Richard Roe', 'created_at' => now()->subDays(3)]);
 
-        $this->get('/usuarios?order=id&direction=asc')
+        $this->get('/usuarios?order=id')
             ->assertSeeInOrder([
                 'John Doe',
                 'Richard Roe',
                 'Jane Doe',
             ]);
 
-        $this->get('/usuarios?order=invalid_column&direction=desc')
+        $this->get('/usuarios?order=invalid_column')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'John Doe',
+                'Richard Roe',
+                'Jane Doe',
+            ]);
+
+        $this->get('/usuarios?order=name-descendent')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'John Doe',
+                'Richard Roe',
+                'Jane Doe',
+            ]);
+
+        $this->get('/usuarios?order=asc-name')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'John Doe',
+                'Richard Roe',
+                'Jane Doe',
+            ]);
+
+
+        $this->get('/usuarios?order=asc-name')
             ->assertOk()
             ->assertSeeInOrder([
                 'John Doe',
