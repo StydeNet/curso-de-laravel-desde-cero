@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Sortable;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
@@ -20,10 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('shared._card', 'card');
 
-//        Builder::macro('whereQuery', function ($subquery, $value) {
-//            $this->addBinding($subquery->getBindings());
-//            $this->where(DB::raw("({$subquery->toSql()})"), $value);
-//        });
+        $this->app->bind(LengthAwarePaginator::class, \App\LengthAwarePaginator::class);
     }
 
     /**

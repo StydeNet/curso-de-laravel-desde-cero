@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Filters;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 abstract class QueryFilter
 {
-    protected $valid;
+    protected $valid = [];
 
     abstract public function rules(): array;
 

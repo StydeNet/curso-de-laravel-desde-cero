@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Filters;
 
-use Illuminate\Support\Str;
+use App\Sortable;
 use App\Rules\SortableColumn;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
