@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
+    private $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
         //$users = DB::table('users')->get();
@@ -43,11 +52,7 @@ class UserController extends Controller
             'name.required' => 'El campo nombre es obligatorio'
         ]);
 
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-        ]);
+        $this->repository->create($data['name'], $data['email'], bcrypt($data['password']));
 
         return redirect()->route('users.index');
     }
