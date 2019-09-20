@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index(Request $request, Sortable $sortable)
     {
         $users = User::query()
-            ->with('team', 'skills', 'profile.profession')
+            ->with('team', 'skills', 'profile.profession', 'lastLogin')
             ->onlyTrashedIf($request->routeIs('users.trashed'))
             ->applyFilters()
             ->orderByDesc('created_at')
