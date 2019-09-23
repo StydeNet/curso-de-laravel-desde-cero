@@ -20,7 +20,7 @@
     @includeWhen($view == 'index', 'users._filters')
 
     @if ($users->isNotEmpty())
-    
+
     <div class="table-responsive-lg">
         <table class="table table-sm">
             <thead class="thead-dark">

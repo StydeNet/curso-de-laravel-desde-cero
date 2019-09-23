@@ -79,7 +79,7 @@ class ListUsersTest extends TestCase
             ])
             ->assertDontSee('Tercer Usuario');
     }
-    
+
     /** @test */
     function users_are_ordered_by_name()
     {
