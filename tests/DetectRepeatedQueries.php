@@ -26,7 +26,9 @@ trait DetectRepeatedQueries
 
         foreach ($selects as $select => $amount) {
             $this->assertEquals(
-                1, $amount, "The following SELECT was executed $amount times:\n\n $select"
+                1,
+                $amount,
+                "The following SELECT was executed $amount times:\n\n $select"
             );
         }
     }

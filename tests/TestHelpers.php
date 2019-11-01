@@ -10,7 +10,10 @@ trait TestHelpers
     {
         $total = $this->getConnection($connection)->table($table)->count();
         $this->assertSame(0, $total, sprintf(
-            "Failed asserting the table [%s] is empty. %s %s found.", $table, $total, Str::plural('row', $total)
+            'Failed asserting the table [%s] is empty. %s %s found.',
+            $table,
+            $total,
+            Str::plural('row', $total)
         ));
     }
 
@@ -18,8 +21,12 @@ trait TestHelpers
     {
         $found = $this->getConnection($connection)->table($table)->count();
         $this->assertSame($expected, $found, sprintf(
-            "Failed asserting the table [%s] has %s %s. %s %s found.",
-            $table, $expected, Str::plural('row', $expected), $found, Str::plural('row', $found)
+            'Failed asserting the table [%s] has %s %s. %s %s found.',
+            $table,
+            $expected,
+            Str::plural('row', $expected),
+            $found,
+            Str::plural('row', $found)
         ));
     }
 

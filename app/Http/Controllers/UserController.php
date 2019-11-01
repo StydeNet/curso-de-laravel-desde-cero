@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{
-    Profession, Skill, Sortable, User, UserFilter
-};
-use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
+use App\Profession;
+use App\Skill;
+use App\Sortable;
+use App\User;
+use App\UserFilter;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

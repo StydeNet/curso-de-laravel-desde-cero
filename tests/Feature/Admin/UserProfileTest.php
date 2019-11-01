@@ -3,7 +3,9 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
-use App\{Profession, User, UserProfile};
+use App\Profession;
+use App\User;
+use App\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsersProfileTest extends TestCase

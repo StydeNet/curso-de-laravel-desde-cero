@@ -4,7 +4,9 @@ namespace Tests\Browser\Admin;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use App\{Profession, Skill, User};
+use App\Profession;
+use App\Skill;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CreateUserTest extends DuskTestCase
