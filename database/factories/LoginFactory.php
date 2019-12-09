@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Login::class, function (Faker $faker) {
     return [
-        'created_at' => $faker->dateTime,
+        'created_at' => $faker->dateTime('now', 'Europe/London'),
     ];
 });

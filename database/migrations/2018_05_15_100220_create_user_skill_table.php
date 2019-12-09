@@ -26,6 +26,7 @@ class CreateUserSkillTable extends Migration
             $table->foreign('skill_id')->references('id')->on('skills');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

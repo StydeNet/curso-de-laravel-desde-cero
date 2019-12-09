@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,18 @@ class User extends Authenticatable
         if ($this->active !== null) {
             return $this->active ? 'active' : 'inactive';
         }
+    }
+
+    public function delete()
+    {
+        DB::transaction(function () {
+            if (parent::delete()) {
+                $this->profile()->delete();
+
+                DB::table('user_skill')
+                    ->where('user_id', $this->id)
+                    ->update(['deleted_at' => now()]);
+            }
+        });
     }
 }

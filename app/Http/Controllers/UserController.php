@@ -10,6 +10,7 @@ use App\UserFilter;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -75,7 +76,6 @@ class UserController extends Controller
     public function trash(User $user)
     {
         $user->delete();
-        $user->profile()->delete();
 
         return redirect()->route('users.index');
     }

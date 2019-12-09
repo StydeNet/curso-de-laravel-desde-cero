@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Skill;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,11 +16,17 @@ class DeleteUsersTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        $user->skills()->attach(factory(Skill::class)->create());
+
         $this->patch("usuarios/{$user->id}/papelera")
             ->assertRedirect('usuarios');
 
         // Option 1:
         $this->assertSoftDeleted('users', [
+            'id' => $user->id,
+        ]);
+
+        $this->assertSoftDeleted('user_skill', [
             'id' => $user->id,
         ]);
 
