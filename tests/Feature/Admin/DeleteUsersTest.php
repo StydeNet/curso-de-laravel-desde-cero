@@ -27,7 +27,7 @@ class DeleteUsersTest extends TestCase
         ]);
 
         $this->assertSoftDeleted('user_skill', [
-            'id' => $user->id,
+            'user_id' => $user->id,
         ]);
 
         $this->assertSoftDeleted('user_profiles', [
