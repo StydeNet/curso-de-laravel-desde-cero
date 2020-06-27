@@ -12,6 +12,13 @@ class ListUsersTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    function renders_the_users_table_component()
+    {
+        $this->get('/usuarios')
+            ->assertSeeLivewire('users-table');
+    }
+
+    /** @test */
     function it_shows_the_users_list()
     {
         factory(User::class)->create([

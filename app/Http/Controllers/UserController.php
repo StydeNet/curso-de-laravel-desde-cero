@@ -14,24 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index(Request $request, Sortable $sortable)
+    public function index(Request $request)
     {
-        $users = User::query()
-            ->with('team', 'skills', 'profile.profession')
-            ->withLastLogin()
-            ->onlyTrashedIf($request->routeIs('users.trashed'))
-            ->applyFilters()
-            ->orderByDesc('created_at')
-            ->paginate();
-
-        $sortable->appends($users->parameters());
-
         return view('users.index', [
             'view' => $request->routeIs('users.trashed') ? 'trash' : 'index',
-            'users' => $users,
-            'skills' => Skill::orderBy('name')->get(),
-            'checkedSkills' => collect(request('skills')),
-            'sortable' => $sortable,
         ]);
     }
 

@@ -31,18 +31,23 @@ class Sortable
 
     public function url($column)
     {
-        if ($this->isSortingBy($column)) {
-            return $this->buildSortableUrl("{$column}-desc");
-        }
+        return $this->buildSortableUrl($this->column($column));
+    }
 
-        return $this->buildSortableUrl($column);
+    public function column($column)
+    {
+        if ($this->isSortingBy($column)) {
+            return "{$column}-desc";
+        } else {
+            return $column;
+        }
     }
 
     protected function buildSortableUrl($order)
     {
         return $this->currentUrl.'?'.Arr::query(array_merge($this->query, ['order' => $order]));
     }
-    
+
     public function classes($column)
     {
         if ($this->isSortingBy($column)) {

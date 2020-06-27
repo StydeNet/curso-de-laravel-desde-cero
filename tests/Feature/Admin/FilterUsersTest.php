@@ -2,6 +2,10 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Http\Livewire\UsersTable;
+use App\Sortable;
+use Illuminate\Http\Request;
+use Livewire\Livewire;
 use Tests\TestCase;
 use App\Skill;
 use App\User;
@@ -14,15 +18,31 @@ class FilterUsersTest extends TestCase
     /** @test */
     function filter_users_by_state_active()
     {
-        $activeUser = factory(User::class)->create();
+        $activeUser = factory(User::class)->create(['name' => 'John Doe']);
 
-        $inactiveUser = factory(User::class)->state('inactive')->create();
+        $inactiveUser = factory(User::class)->state('inactive')->create(['name' => 'Jane Doe']);
 
-        $response = $this->get('/usuarios?state=active');
+        $this->getUsersTableComponentWithFilters(['state' => 'active'])
+            ->assertSee('John Doe')
+            ->assertDontSee('Jane Doe');
 
-        $response->assertViewCollection('users')
-            ->contains($activeUser)
-            ->notContains($inactiveUser);
+
+//
+//        $response = $this->get('/usuarios?state=active');
+//
+//        $response->assertSee('John Doe')
+//            ->assertDontSee('Jane Doe');
+
+    }
+
+    protected function getUsersTableComponentWithFilters(array $filters)
+    {
+        $request = new Request(['state' => 'active']);
+        $sortable = new Sortable('/usuarios');
+
+        // Cargar el componente de forma individual
+        // Ventaja de prueba con Livewire: Sacar el componente del contexto del request
+        return Livewire::test(UsersTable::class, ['request' => $request, 'sortable' => $sortable]);
     }
 
     /** @test */
