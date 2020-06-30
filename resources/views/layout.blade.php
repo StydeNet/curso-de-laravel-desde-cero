@@ -15,6 +15,8 @@
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    @stack('styles')
 </head>
 
 <body>
@@ -77,5 +79,6 @@
         format: 'dd/mm/yyyy'
     });
 </script>
+    @stack('scripts')
 </body>
 </html>

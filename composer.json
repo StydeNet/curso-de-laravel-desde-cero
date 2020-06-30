@@ -8,7 +8,8 @@
         "php": "^7.2",
         "fideloper/proxy": "~4.0",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "livewire/livewire": "^1.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
