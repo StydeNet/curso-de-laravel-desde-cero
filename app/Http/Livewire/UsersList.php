@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Skill;
 use App\Sortable;
 use App\User;
+use Illuminate\Http\Request;
 use Livewire\Component;
 
 class UsersList extends Component
@@ -12,11 +13,17 @@ class UsersList extends Component
     /**
      * @var mixed
      */
-    protected $view;
+    public $view;
+    /**
+     * @var mixed|string
+     */
+    public $currentUrl;
 
-    public function mount($view)
+    public function mount($view, Request $request)
     {
         $this->view = $view;
+
+        $this->currentUrl = $request->url();
     }
 
     public function hydrate()
@@ -40,12 +47,9 @@ class UsersList extends Component
 
     public function render()
     {
-        $sortable = new Sortable(request()->url());
-
-        $this->view = 'index';
+        $sortable = new Sortable($this->currentUrl);
 
         return view('users._livewire-list', [
-            'view' => $this->view,
             'users' => $this->getUsers($sortable),
             'skills' => Skill::getList(),
             'checkedSkills' => collect(request('skills')),

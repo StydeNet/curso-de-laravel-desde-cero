@@ -2,7 +2,7 @@
     @includeWhen($view == 'index', 'users._filters')
 
     <p><a href="#" wire:click="$refresh()" class="btn btn-info">Recargar componente</a></p>
-
+    
     @if ($users->isNotEmpty())
 
         <div class="table-responsive-lg">
