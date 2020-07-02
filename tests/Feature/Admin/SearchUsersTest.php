@@ -14,135 +14,124 @@ class SearchUsersTest extends TestCase
     /** @test */
     function search_users_by_name()
     {
-        $joel = factory(User::class)->create([
-            'name' => 'Joel',
-            'email' => 'joel@example.com',
+        factory(User::class)->create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
         ]);
 
-        $ellie = factory(User::class)->create([
-            'name' => 'Ellie',
-            'email' => 'ellie@example.com',
+        factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=Joel')
+        $this->get('/usuarios?search=John')
             ->assertStatus(200)
-            ->assertViewHas('users', function ($users) use ($joel, $ellie) {
-                return $users->contains($joel) && !$users->contains($ellie);
-            });
+            ->assertSee('John Doe')
+            ->assertDontSee('Jane Doe');
     }
 
     /** @test */
     function show_results_with_a_partial_search_by_name()
     {
-        $joel = factory(User::class)->create([
-            'name' => 'Joel',
-            'email' => 'joel@example.com',
+        factory(User::class)->create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
         ]);
 
-        $ellie = factory(User::class)->create([
-            'name' => 'Ellie',
-            'email' => 'ellie@example.com',
+        factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane.doe@example.com',
         ]);
 
         $this->get('/usuarios?search=Jo')
             ->assertStatus(200)
-            ->assertViewHas('users', function ($users) use ($joel, $ellie) {
-                return $users->contains($joel) && !$users->contains($ellie);
-            });
+            ->assertSee('John Doe')
+            ->assertDontSee('Jane Doe');
     }
 
     /** @test */
     function search_users_by_email()
     {
-        $joel = factory(User::class)->create([
-            'email' => 'joel@example.com',
+        factory(User::class)->create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
         ]);
 
-        $ellie = factory(User::class)->create([
-            'email' => 'ellie@example.net',
+        factory(User::class)->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=joel@example.com')
+        $this->get('/usuarios?search=john.doe@example.com')
             ->assertStatus(200)
-            ->assertViewHas('users', function ($users) use ($joel, $ellie) {
-                return $users->contains($joel) && !$users->contains($ellie);
-            });
+            ->assertSee('John Doe')
+            ->assertDontSee('Jane Doe');
     }
 
     /** @test */
     function show_results_with_a_partial_search_by_email()
     {
-        $joel = factory(User::class)->create([
-            'email' => 'joel@example.com',
+        factory(User::class)->create([
+            'email' => 'john.doe@example.com',
         ]);
 
-        $ellie = factory(User::class)->create([
-            'email' => 'ellie@example.net',
+        factory(User::class)->create([
+            'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=joel@example')
+        $this->get('/usuarios?search=john.doe@ex')
             ->assertStatus(200)
-            ->assertViewHas('users', function ($users) use ($joel, $ellie) {
-                return $users->contains($joel) && !$users->contains($ellie);
-            });
+            ->assertSee('john.doe@example.com')
+            ->assertDontSee('jane.doe@example.com');
     }
 
     /** @test */
     function search_users_by_team_name()
     {
-        $joel = factory(User::class)->create([
-            'name' => 'Joel',
-            'team_id' => factory(Team::class)->create(['name' => 'Smuggler'])->id,
+        factory(User::class)->create([
+            'name' => 'John Doe',
+            'team_id' => factory(Team::class)->create(['name' => "John's company"]),
         ]);
 
-        $ellie = factory(User::class)->create([
-            'name' => 'Ellie',
+        factory(User::class)->create([
+            'name' => 'Jane Doe',
             'team_id' => null,
         ]);
 
-        $marlene = factory(User::class)->create([
-            'name' => 'Marlene',
-            'team_id' => factory(Team::class)->create(['name' => 'Firefly'])->id,
+        factory(User::class)->create([
+            'name' => 'Roe Doe',
+            'team_id' => factory(Team::class)->create(['name' => "ROE INC"]),
         ]);
 
-        $response = $this->get('/usuarios?search=Firefly')
-            ->assertStatus(200);
-//            ->assertViewHas('users', function ($users) use ($marlene, $joel, $ellie) {
-//                return $users->contains($marlene)
-//                    && !$users->contains($joel)
-//                    && !$users->contains($ellie);
-//            });
-
-        $response->assertViewCollection('users')
-            ->contains($marlene)
-            ->notContains($joel)
-            ->notContains($ellie);
+        $this->get('/usuarios?search=ROE INC')
+            ->assertStatus(200)
+            ->assertSee('Roe Doe')
+            ->assertDontSee('John Doe')
+            ->assertDontSee('Jane Doe');
     }
 
     /** @test */
     function partial_search_by_team_name()
     {
-        $joel = factory(User::class)->create([
-            'name' => 'Joel',
-            'team_id' => factory(Team::class)->create(['name' => 'Smuggler'])->id,
+        factory(User::class)->create([
+            'name' => 'John Doe',
+            'team_id' => factory(Team::class)->create(['name' => "John's company"]),
         ]);
 
-        $ellie = factory(User::class)->create([
-            'name' => 'Ellie',
+        factory(User::class)->create([
+            'name' => 'Jane Doe',
             'team_id' => null,
         ]);
 
-        $marlene = factory(User::class)->create([
-            'name' => 'Marlene',
-            'team_id' => factory(Team::class)->create(['name' => 'Firefly'])->id,
+        factory(User::class)->create([
+            'name' => 'Roe Doe',
+            'team_id' => factory(Team::class)->create(['name' => "ROE INC"]),
         ]);
 
-        $response = $this->get('/usuarios?search=Fire')
-            ->assertStatus(200);
-
-        $response->assertViewCollection('users')
-            ->contains($marlene)
-            ->notContains($joel)
-            ->notContains($ellie);
+        $this->get('/usuarios?search=INC')
+            ->assertStatus(200)
+            ->assertSee('Roe Doe')
+            ->assertDontSee('John Doe')
+            ->assertDontSee('Jane Doe');
     }
 }

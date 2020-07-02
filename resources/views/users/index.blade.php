@@ -19,10 +19,6 @@
 
     @livewire('users-list', compact([
         'view',
-        'users',
-        'skills',
-        'checkedSkills',
-        'sortable',
     ]))
 
 
