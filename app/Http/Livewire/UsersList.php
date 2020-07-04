@@ -19,11 +19,19 @@ class UsersList extends Component
      */
     public $currentUrl;
 
+    public $search;
+
+    protected $updatesQueryString = [
+        'search' => ['except' => ''],
+    ];
+
     public function mount($view, Request $request)
     {
         $this->view = $view;
 
         $this->currentUrl = $request->url();
+
+        $this->search = $request->input('search');
     }
 
     public function hydrate()
@@ -36,7 +44,9 @@ class UsersList extends Component
             ->with('team', 'skills', 'profile.profession')
             ->withLastLogin()
             ->onlyTrashedIf(request()->routeIs('users.trashed'))
-            ->applyFilters()
+            ->applyFilters([
+                'search' => $this->search,
+            ])
             ->orderByDesc('created_at')
             ->paginate();
 
