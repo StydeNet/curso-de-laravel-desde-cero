@@ -1,4 +1,4 @@
-<div>
+<div id="users-table">
     @includeWhen($view == 'index', 'users._filters')
 
     @if ($users->isNotEmpty())

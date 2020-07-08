@@ -27,11 +27,17 @@ class UsersList extends Component
 
     public $skills;
 
+    public $from;
+
+    public $to;
+
     protected $updatesQueryString = [
         'search' => ['except' => ''],
         'state' => ['except' => 'all'],
         'role' => ['except' => 'all'],
         'skills' => [],
+        'from' => ['except' => ''],
+        'to' => ['except' => ''],
     ];
 
     public function mount($view, Request $request)
@@ -47,6 +53,10 @@ class UsersList extends Component
         $this->role = $request->input('role');
 
         $this->skills = is_array($request->input('skills')) ? $request->input('skills') : [];
+
+        $this->from = $request->input('from');
+
+        $this->to = $request->input('to');
     }
 
     public function hydrate()
@@ -64,8 +74,8 @@ class UsersList extends Component
                 'state' => $this->state,
                 'role' => $this->role,
                 'skills' => $this->skills,
-                'from' => request()->input('from'),
-                'to' => request()->input('to'),
+                'from' => $this->from,
+                'to' => $this->to,
                 'order' => request()->input('order'),
             ])
             ->orderByDesc('created_at')

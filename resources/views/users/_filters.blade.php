@@ -3,8 +3,7 @@
         <div class="col-md-6">
             @foreach (trans('users.filters.states') as $value => $text)
                 <div class="form-check form-check-inline">
-                    <input wire:model="state" class="form-check-input" type="radio" name="state"
-                           id="state_{{ $value }}" value="{{ $value }}" {{ $value == request('state') ? 'checked' : '' }}>
+                    <input wire:model="state" class="form-check-input" type="radio" name="state" id="state_{{ $value }}" value="{{ $value }}" {{ $value == $state ? 'checked' : '' }}>
                     <label class="form-check-label" for="state_{{ $value }}">{{ $text }}</label>
                 </div>
             @endforeach
@@ -13,7 +12,7 @@
     <div class="row row-filters">
         <div class="col-md-6">
             <div class="form-inline form-search">
-                <input wire:model.debounce.500ms="search" type="text" name="search" class="form-control form-control-sm" placeholder="Buscar...">
+                <input wire:model.debounce.500ms="search" type="text" name="search" value="{{ $search }}" class="form-control form-control-sm" placeholder="Buscar...">
                 &nbsp;
                 <div class="btn-group">
                     <select wire:model="role" name="role" id="role" class="select-field">
@@ -48,13 +47,13 @@
             <div class="form-inline form-dates">
                 <label for="from" class="form-label-sm">Fecha</label>&nbsp;
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="Desde" value="{{ request('from') }}">
+                    <input wire:model="from" type="text" class="form-control form-control-sm" name="from" id="from" placeholder="Desde" value="{{ $from }}">
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="Hasta" value="{{ request('to') }}">
+                    <input wire:model="to" type="text" class="form-control form-control-sm" name="to" id="to" placeholder="Hasta" value="{{ $to }}">
                 </div>
                 &nbsp;
-                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                <button type="submit" class="btn btn-sm btn-primary" id="btn-filter">Filtrar</button>
             </div>
         </div>
     </div>

@@ -21,3 +21,30 @@
         'view',
     ]))
 @endsection
+
+@push('scripts')
+    <script>
+        var loadCalendars = function () {
+            ['from', 'to'].forEach(function (field) {
+                $('#'+field).datepicker({
+                    uiLibrary: 'bootstrap4',
+                    format: 'dd/mm/yyyy'
+                }).on('change', function () {
+                    var usersTableId = $('#users-table').attr('wire:id');
+                    var usersTable = window.livewire.find(usersTableId);
+
+                    if (usersTable.get(field) !== $(this).val()) {
+                        usersTable.set(field, $(this).val());
+                    }
+                });
+            });
+        };
+
+        loadCalendars();
+        $('#btn-filter').hide();
+
+        document.addEventListener('livewire:load', function (event) {
+            window.livewire.hook('afterDomUpdate', loadCalendars);
+        });
+    </script>
+@endpush
