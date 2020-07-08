@@ -22,8 +22,8 @@ class UserFilter extends QueryFilter
             'state' => 'in:active,inactive',
             'role' => 'in:admin,user',
             'skills' => 'array|exists:skills,id',
-            'from' => 'date_format:d/m/Y',
-            'to' => 'date_format:d/m/Y',
+            'from' => 'filled|date_format:d/m/Y',
+            'to' => 'filled|date_format:d/m/Y',
             'order' => [new SortableColumn(['name', 'email', 'date', 'login'])],
         ];
     }

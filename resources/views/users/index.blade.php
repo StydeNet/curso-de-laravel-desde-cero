@@ -20,10 +20,4 @@
     @livewire('users-list', compact([
         'view',
     ]))
-
-
-@endsection
-
-@section('sidebar')
-    @parent
 @endsection
