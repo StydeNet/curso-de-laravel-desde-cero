@@ -8,10 +8,13 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col"><a href="{{ $sortable->url('name') }}" class="{{ $sortable->classes('name') }}">Nombre <i class="icon-sort"></i></a></th>
-                    <th scope="col"><a href="{{ $sortable->url('email') }}" class="{{ $sortable->classes('email') }}">Correo <i class="icon-sort"></i></a></th>
-                    <th scope="col"><a href="{{ $sortable->url('date') }}" class="{{ $sortable->classes('date') }}">Registrado el <i class="icon-sort"></i></a></th>
-                    <th scope="col"><a href="{{ $sortable->url('login') }}" class="{{ $sortable->classes('login') }}">Último login <i class="icon-sort"></i></a></th>
+                    @foreach(['name' => 'Nombre', 'email' => 'Correo', 'date' => 'Registrado el', 'login' => 'Último login'] as $column => $title)
+                        <th scope="col">
+                            <a wire:click.prevent="changeOrder('{{ $sortable->order($column) }}')" href="{{ $sortable->url($column) }}" class="{{ $sortable->classes($column) }}">
+                                {{ $title }} <i class="icon-sort"></i>
+                            </a>
+                        </th>
+                    @endforeach
                     <th scope="col" class="text-right th-actions">Acciones</th>
                 </tr>
                 </thead>

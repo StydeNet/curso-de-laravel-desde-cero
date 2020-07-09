@@ -29,20 +29,25 @@ class Sortable
         $this->query = $query;
     }
 
-    public function url($column)
+    public function url($order)
     {
-        if ($this->isSortingBy($column)) {
-            return $this->buildSortableUrl("{$column}-desc");
+        return $this->buildSortableUrl($this->order($order));
+    }
+
+    public function order($order)
+    {
+        if ($this->isSortingBy($order)) {
+            return "{$order}-desc";
         }
 
-        return $this->buildSortableUrl($column);
+        return $order;
     }
 
     protected function buildSortableUrl($order)
     {
         return $this->currentUrl.'?'.Arr::query(array_merge($this->query, ['order' => $order]));
     }
-    
+
     public function classes($column)
     {
         if ($this->isSortingBy($column)) {
