@@ -7,17 +7,15 @@ use App\Sortable;
 use App\User;
 use Illuminate\Http\Request;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UsersList extends Component
 {
-    /**
-     * @var mixed
-     */
+    use WithPagination;
+
     public $view;
-    /**
-     * @var mixed|string
-     */
-    public $currentUrl;
+
+    public $originalUrl;
 
     public $search;
 
@@ -47,7 +45,7 @@ class UsersList extends Component
     {
         $this->view = $view;
 
-        $this->currentUrl = $request->url();
+        $this->originalUrl = $request->url();
 
         $this->search = $request->input('search');
 
@@ -62,11 +60,19 @@ class UsersList extends Component
         $this->to = $request->input('to');
 
         $this->order = $request->input('order');
+
+        $this->page = $request->input('page', 1);
+    }
+
+    public function updating()
+    {
+        $this->resetPage();
     }
 
     public function changeOrder($order)
     {
         $this->order = $order;
+        $this->resetPage();
     }
 
     protected function getUsers(Sortable $sortable)
@@ -94,7 +100,7 @@ class UsersList extends Component
 
     public function render()
     {
-        $sortable = new Sortable($this->currentUrl);
+        $sortable = new Sortable($this->originalUrl);
 
         return view('users._livewire-list', [
             'users' => $this->getUsers($sortable),

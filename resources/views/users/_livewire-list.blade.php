@@ -24,6 +24,7 @@
             </table>
 
             {{ $users->links() }}
+            
             <p>Viendo página {{ $users->currentPage() }} de {{ $users->lastPage() }}</p>
         </div>
     @else
