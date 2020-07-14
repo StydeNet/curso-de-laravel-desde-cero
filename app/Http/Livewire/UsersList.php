@@ -23,7 +23,7 @@ class UsersList extends Component
 
     public $role;
 
-    public $skills;
+    public $skills = [];
 
     public $from;
 
@@ -41,6 +41,10 @@ class UsersList extends Component
         'order' => ['except' => ''],
     ];
 
+    protected $listeners = [
+        'refreshUserList' => 'refreshList',
+    ];
+
     public function mount($view, Request $request)
     {
         $this->view = $view;
@@ -53,15 +57,30 @@ class UsersList extends Component
 
         $this->role = $request->input('role');
 
-        $this->skills = is_array($request->input('skills')) ? $request->input('skills') : [];
+        if (is_array($skills = $request->input('skills'))) {
+            $this->skills = array_combine($skills, $skills);
+        }
 
         $this->from = $request->input('from');
 
         $this->to = $request->input('to');
 
         $this->order = $request->input('order');
+    }
 
-        $this->page = $request->input('page', 1);
+    public function refreshList($field, $value, $checked = true)
+    {
+        if (in_array($field, ['search', 'state', 'role', 'from', 'to'])) {
+            $this->$field = $value;
+        }
+
+        if ($field === 'skills') {
+            if ($checked) {
+                $this->skills[$value] = $value;
+            } else {
+                unset($this->skills[$value]);
+            }
+        }
     }
 
     public function updating()
@@ -104,7 +123,6 @@ class UsersList extends Component
 
         return view('users._livewire-list', [
             'users' => $this->getUsers($sortable),
-            'skillsList' => Skill::getList(),
             'sortable' => $sortable,
         ]);
     }

@@ -17,6 +17,10 @@
         </p>
     </div>
 
+    @if ($view === 'index')
+        @livewire('user-filter')
+    @endif
+
     @livewire('users-list', compact([
         'view',
     ]))
@@ -34,7 +38,7 @@
                     var usersTable = window.livewire.find(usersTableId);
 
                     if (usersTable.get(field) !== $(this).val()) {
-                        usersTable.set(field, $(this).val());
+                        window.livewire.emit('refreshUserList', field, $(this).val());
                     }
                 });
             });
