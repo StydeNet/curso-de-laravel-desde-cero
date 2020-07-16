@@ -66,6 +66,8 @@ class UsersList extends Component
         $this->to = $request->input('to');
 
         $this->order = $request->input('order');
+
+        $this->page = $request->input('page'); // <-- This is required for testing purposes!
     }
 
     public function refreshList($field, $value, $checked = true)

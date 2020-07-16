@@ -2,31 +2,42 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Http\Livewire\UsersList;
 use App\Login;
 use App\User;
+use Illuminate\Http\Request;
+use Livewire\Livewire;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListUsersTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, GetsUserListComponent;
 
     /** @test */
-    function it_shows_the_users_list()
+    function displays_the_user_list_component()
     {
-        factory(User::class)->create([
-            'name' => 'Joel'
-        ]);
-
-        factory(User::class)->create([
-            'name' => 'Ellie',
-        ]);
-
         $this->get('/usuarios')
             ->assertStatus(200)
             ->assertSee(trans('users.title.index'))
-            ->assertSee('Joel')
-            ->assertSee('Ellie');
+            ->assertSeeLivewire('users-list');
+    }
+
+    /** @test */
+    function shows_the_list_of_users()
+    {
+        factory(User::class)->create([
+            'name' => 'John'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'Jane',
+        ]);
+
+        $this->getUserListComponent()
+            ->assertStatus(200)
+            ->assertSee('John')
+            ->assertSee('Jane');
 
         $this->assertNotRepeatedQueries();
     }
@@ -63,7 +74,7 @@ class ListUsersTest extends TestCase
             'created_at' => now()->subDays(3),
         ]);
 
-        $this->get('/usuarios')
+        $this->getUserListComponent()
             ->assertStatus(200)
             ->assertSeeInOrder([
                 'Decimoséptimo Usuario',
@@ -73,7 +84,7 @@ class ListUsersTest extends TestCase
             ->assertDontSee('Segundo Usuario')
             ->assertDontSee('Primer Usuario');
 
-        $this->get('/usuarios?page=2')
+        $this->getUserListComponent(['page' => 2])
             ->assertSeeInOrder([
                 'Segundo Usuario',
                 'Primer Usuario',
@@ -88,14 +99,14 @@ class ListUsersTest extends TestCase
         factory(User::class)->create(['name' => 'Richard Roe']);
         factory(User::class)->create(['name' => 'Jane Doe']);
 
-        $this->get('/usuarios?order=name')
+        $this->getUserListComponent(['order' => 'name'])
             ->assertSeeInOrder([
                 'Jane Doe',
                 'John Doe',
                 'Richard Roe',
             ]);
 
-        $this->get('/usuarios?order=name-desc')
+        $this->getUserListComponent(['order' => 'name-desc'])
             ->assertSeeInOrder([
                 'Richard Roe',
                 'John Doe',
@@ -110,14 +121,14 @@ class ListUsersTest extends TestCase
         factory(User::class)->create(['email' => 'richard.roe@example.com']);
         factory(User::class)->create(['email' => 'jane.doe@example.com']);
 
-        $this->get('/usuarios?order=email')
+        $this->getUserListComponent(['order' => 'email'])
             ->assertSeeInOrder([
                 'jane.doe@example.com',
                 'john.doe@example.com',
                 'richard.roe@example.com',
             ]);
 
-        $this->get('/usuarios?order=email-desc')
+        $this->getUserListComponent(['order' => 'email-desc'])
             ->assertSeeInOrder([
                 'richard.roe@example.com',
                 'john.doe@example.com',
@@ -132,14 +143,14 @@ class ListUsersTest extends TestCase
         factory(User::class)->create(['name' => 'Jane Doe', 'created_at' => now()->subDays(5)]);
         factory(User::class)->create(['name' => 'Richard Roe', 'created_at' => now()->subDays(3)]);
 
-        $this->get('/usuarios?order=date')
+        $this->getUserListComponent(['order' => 'date'])
             ->assertSeeInOrder([
                 'Jane Doe',
                 'Richard Roe',
                 'John Doe',
             ]);
 
-        $this->get('/usuarios?order=date-desc')
+        $this->getUserListComponent(['order' => 'date-desc'])
             ->assertSeeInOrder([
                 'John Doe',
                 'Richard Roe',
@@ -163,14 +174,14 @@ class ListUsersTest extends TestCase
             'user_id' => factory(User::class)->create(['name' => 'Richard Roe']),
         ]);
 
-        $this->get('/usuarios?order=login')
+        $this->getUserListComponent(['order' => 'login'])
             ->assertSeeInOrder([
                 'John Doe',
                 'Richard Roe',
                 'Jane Doe',
             ]);
 
-        $this->get('/usuarios?order=login-desc')
+        $this->getUserListComponent(['order' => 'login-desc'])
             ->assertSeeInOrder([
                 'Jane Doe',
                 'Richard Roe',
@@ -185,14 +196,14 @@ class ListUsersTest extends TestCase
         factory(User::class)->create(['name' => 'Jane Doe', 'created_at' => now()->subDays(5)]);
         factory(User::class)->create(['name' => 'Richard Roe', 'created_at' => now()->subDays(3)]);
 
-        $this->get('/usuarios?order=id')
+        $this->getUserListComponent(['order' => 'id'])
             ->assertSeeInOrder([
                 'John Doe',
                 'Richard Roe',
                 'Jane Doe',
             ]);
 
-        $this->get('/usuarios?order=invalid_column')
+        $this->getUserListComponent(['order' => 'invalid-column'])
             ->assertOk()
             ->assertSeeInOrder([
                 'John Doe',
@@ -200,7 +211,7 @@ class ListUsersTest extends TestCase
                 'Jane Doe',
             ]);
 
-        $this->get('/usuarios?order=name-descendent')
+        $this->getUserListComponent(['order' => 'name-descendent'])
             ->assertOk()
             ->assertSeeInOrder([
                 'John Doe',
@@ -208,16 +219,7 @@ class ListUsersTest extends TestCase
                 'Jane Doe',
             ]);
 
-        $this->get('/usuarios?order=asc-name')
-            ->assertOk()
-            ->assertSeeInOrder([
-                'John Doe',
-                'Richard Roe',
-                'Jane Doe',
-            ]);
-
-
-        $this->get('/usuarios?order=asc-name')
+        $this->getUserListComponent(['order' => 'asc-name'])
             ->assertOk()
             ->assertSeeInOrder([
                 'John Doe',
@@ -229,7 +231,7 @@ class ListUsersTest extends TestCase
     /** @test */
     function it_shows_a_default_message_if_the_users_list_is_empty()
     {
-        $this->get('/usuarios')
+        $this->getUserListComponent()
             ->assertStatus(200)
             ->assertSee('No hay usuarios registrados.');
     }

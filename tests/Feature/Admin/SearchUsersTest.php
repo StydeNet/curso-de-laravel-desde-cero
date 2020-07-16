@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SearchUsersTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, GetsUserListComponent;
 
     /** @test */
     function search_users_by_name()
@@ -24,7 +24,7 @@ class SearchUsersTest extends TestCase
             'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=John')
+        $this->getUserListComponent(['search' => 'John'])
             ->assertStatus(200)
             ->assertSee('John Doe')
             ->assertDontSee('Jane Doe');
@@ -43,7 +43,7 @@ class SearchUsersTest extends TestCase
             'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=Jo')
+        $this->getUserListComponent(['search' => 'Jo'])
             ->assertStatus(200)
             ->assertSee('John Doe')
             ->assertDontSee('Jane Doe');
@@ -62,7 +62,7 @@ class SearchUsersTest extends TestCase
             'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=john.doe@example.com')
+        $this->getUserListComponent(['search' => 'john.doe@example.com'])
             ->assertStatus(200)
             ->assertSee('John Doe')
             ->assertDontSee('Jane Doe');
@@ -79,7 +79,7 @@ class SearchUsersTest extends TestCase
             'email' => 'jane.doe@example.com',
         ]);
 
-        $this->get('/usuarios?search=john.doe@ex')
+        $this->getUserListComponent(['search' => 'john.doe@ex'])
             ->assertStatus(200)
             ->assertSee('john.doe@example.com')
             ->assertDontSee('jane.doe@example.com');
@@ -103,7 +103,7 @@ class SearchUsersTest extends TestCase
             'team_id' => factory(Team::class)->create(['name' => "ROE INC"]),
         ]);
 
-        $this->get('/usuarios?search=ROE INC')
+        $this->getUserListComponent(['search' => 'ROE INC'])
             ->assertStatus(200)
             ->assertSee('Roe Doe')
             ->assertDontSee('John Doe')
@@ -128,7 +128,7 @@ class SearchUsersTest extends TestCase
             'team_id' => factory(Team::class)->create(['name' => "ROE INC"]),
         ]);
 
-        $this->get('/usuarios?search=INC')
+        $this->getUserListComponent(['search' => 'INC'])
             ->assertStatus(200)
             ->assertSee('Roe Doe')
             ->assertDontSee('John Doe')
