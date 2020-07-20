@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Skill;
 use App\Sortable;
 use App\User;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class UsersList extends Component
+class UserList extends Component
 {
     use WithPagination;
 
@@ -47,41 +46,46 @@ class UsersList extends Component
 
     public function mount($view, Request $request)
     {
-        $this->view = $view;
+        $this->fill([
+            'view' => $view,
+            'originalUrl' => $request->url(),
+            'search' => $request->input('search'),
+            'state' => $request->input('state'),
+            'role' => $request->input('role'),
+            'from' => $request->input('from'),
+            'to' => $request->input('to'),
+            'order' => $request->input('order'),
+            'skills' => $this->normalizeSkills($request->input('skills')),
+            'page' => $request->input('page'), // <-- This is required for testing purposes!
+        ]);
+    }
 
-        $this->originalUrl = $request->url();
-
-        $this->search = $request->input('search');
-
-        $this->state = $request->input('state');
-
-        $this->role = $request->input('role');
-
-        if (is_array($skills = $request->input('skills'))) {
-            $this->skills = array_combine($skills, $skills);
+    protected function normalizeSkills($skills)
+    {
+        if (is_array($skills)) {
+            return array_combine($skills, $skills);
+        } else {
+            return [];
         }
-
-        $this->from = $request->input('from');
-
-        $this->to = $request->input('to');
-
-        $this->order = $request->input('order');
-
-        $this->page = $request->input('page'); // <-- This is required for testing purposes!
     }
 
     public function refreshList($field, $value, $checked = true)
     {
         if (in_array($field, ['search', 'state', 'role', 'from', 'to'])) {
-            $this->$field = $value;
+            $this->fill([$field => $value]);
         }
 
         if ($field === 'skills') {
-            if ($checked) {
-                $this->skills[$value] = $value;
-            } else {
-                unset($this->skills[$value]);
-            }
+            $this->toggleSkill($value, $checked);
+        }
+    }
+
+    protected function toggleSkill($value, bool $checked): void
+    {
+        if ($checked) {
+            $this->skills[$value] = $value;
+        } else {
+            unset($this->skills[$value]);
         }
     }
 

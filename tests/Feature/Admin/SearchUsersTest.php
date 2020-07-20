@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Team;
 use App\User;
+use Tests\Livewire\GetsUserListComponent;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

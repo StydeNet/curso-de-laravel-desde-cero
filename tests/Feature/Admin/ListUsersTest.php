@@ -2,11 +2,9 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Http\Livewire\UsersList;
 use App\Login;
 use App\User;
-use Illuminate\Http\Request;
-use Livewire\Livewire;
+use Tests\Livewire\GetsUserListComponent;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

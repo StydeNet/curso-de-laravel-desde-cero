@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Skill;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class UserFilter extends Component
