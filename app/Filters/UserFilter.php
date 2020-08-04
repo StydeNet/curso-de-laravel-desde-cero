@@ -56,6 +56,9 @@ class UserFilter extends QueryFilter
 
     public function from($query, $date)
     {
+    	if(empty($date))
+            return;
+
         $date = Carbon::createFromFormat('d/m/Y', $date);
 
         $query->whereDate('created_at', '>=', $date);
@@ -63,6 +66,9 @@ class UserFilter extends QueryFilter
 
     public function to($query, $date)
     {
+    	if(empty($date))
+            return;
+        
         $date = Carbon::createFromFormat('d/m/Y', $date);
 
         $query->whereDate('created_at', '<=', $date);
