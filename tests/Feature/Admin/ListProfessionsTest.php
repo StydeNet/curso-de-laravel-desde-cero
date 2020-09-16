@@ -13,11 +13,11 @@ class ListProfessionsTest extends TestCase
     /** @test */
     function it_shows_the_professions_list()
     {
-        factory(Profession::class)->create(['title' => 'Diseñador']);
+        Profession::factory()->create(['title' => 'Diseñador']);
 
-        factory(Profession::class)->create(['title' => 'Programador']);
+        Profession::factory()->create(['title' => 'Programador']);
 
-        factory(Profession::class)->create(['title' => 'Administrador']);
+        Profession::factory()->create(['title' => 'Administrador']);
 
         $this->get('/profesiones')
             ->assertStatus(200)

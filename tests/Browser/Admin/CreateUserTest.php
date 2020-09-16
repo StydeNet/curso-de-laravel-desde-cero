@@ -16,9 +16,9 @@ class CreateUserTest extends DuskTestCase
     /** @test */
     function a_user_can_be_created()
     {
-        $profession = factory(Profession::class)->create();
-        $skillA = factory(Skill::class)->create();
-        $skillB = factory(Skill::class)->create();
+        $profession = Profession::factory()->create();
+        $skillA = Skill::factory()->create();
+        $skillB = Skill::factory()->create();
 
         $this->browse(function (Browser $browser) use ($profession, $skillA, $skillB) {
             $browser->visit('usuarios/nuevo')
