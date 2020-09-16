@@ -47,7 +47,7 @@
                type="checkbox"
                id="skill_{{ $skill->id }}"
                value="{{ $skill->id }}"
-                {{ $errors->any() ? old("skills.{$skill->id}") : $user->skills->contains($skill) ? 'checked' : '' }}>
+                {{ ($errors->any() ? old("skills.{$skill->id}") : $user->skills->contains($skill)) ? 'checked' : '' }}>
         <label class="form-check-label" for="skill_{{ $skill->id }}">{{ $skill->name }}</label>
     </div>
 @endforeach
