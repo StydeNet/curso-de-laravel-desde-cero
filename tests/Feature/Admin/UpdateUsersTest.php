@@ -3,9 +3,9 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
-use App\Profession;
-use App\Skill;
-use App\User;
+use App\Models\Profession;
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateUsersTest extends TestCase

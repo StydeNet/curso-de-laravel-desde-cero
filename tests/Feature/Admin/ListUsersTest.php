@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Login;
-use App\User;
+use App\Models\Login;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Profession;
+use App\Models\Profession;
 
 class ProfessionController extends Controller
 {

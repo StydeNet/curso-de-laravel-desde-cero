@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Profession;
+use App\Models\Profession;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Login;
+
 class UserQuery extends QueryBuilder
 {
     public function findByEmail($email)

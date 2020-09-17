@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Login;
-use App\Skill;
-use App\Team;
-use App\User;
-use App\Profession;
-use App\UserProfile;
+use App\Models\Login;
+use App\Models\Skill;
+use App\Models\Team;
+use App\Models\User;
+use App\Models\Profession;
+use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

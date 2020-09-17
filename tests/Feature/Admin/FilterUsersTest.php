@@ -3,8 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
-use App\Skill;
-use App\User;
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FilterUsersTest extends TestCase

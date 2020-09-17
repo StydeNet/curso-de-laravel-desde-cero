@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Team;
+use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class TeamFactory extends Factory
 {
