@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Login;
 use App\Skill;
 use App\Team;
 use App\User;
@@ -43,7 +44,7 @@ class UserSeeder extends Seeder
 
     protected function createAdmin()
     {
-        $admin = factory(User::class)->create([
+        $admin = User::factory()->create([
             'team_id' => $this->teams->firstWhere('name', 'Styde'),
             'name' => 'Duilio Palacios',
             'email' => 'duilio@styde.net',
@@ -63,7 +64,7 @@ class UserSeeder extends Seeder
 
     protected function createRandomUser()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'team_id' => rand(0, 2) ? null : $this->teams->random()->id,
             'active' => rand(0, 3) ? true : false,
             'created_at' => now()->subDays(rand(1, 90)),
@@ -75,7 +76,7 @@ class UserSeeder extends Seeder
             'profession_id' => rand(0, 2) ? $this->professions->random()->id : null,
         ]);
 
-        factory(\App\Login::class)->times(rand(1, 10))->create([
+        Login::factory()->times(rand(1, 10))->create([
             'user_id' => $user->id,
         ]);
     }
