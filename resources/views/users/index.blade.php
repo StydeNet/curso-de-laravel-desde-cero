@@ -1,8 +1,7 @@
-@extends('layout')
+<x-app-layout>
 
-@section('title', 'Usuarios')
+    <x-slot name="title">Usuarios</x-slot>
 
-@section('content')
     <div class="d-flex justify-content-between align-items-end mb-3">
         <h1 class="pb-1">
             {{ trans("users.title.{$view}") }}
@@ -44,8 +43,5 @@
     @else
         <p>No hay usuarios registrados.</p>
     @endif
-@endsection
 
-@section('sidebar')
-    @parent
-@endsection
+</x-app-layout>

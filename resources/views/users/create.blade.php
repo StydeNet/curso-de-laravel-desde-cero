@@ -6,7 +6,7 @@
     <x-card>
         @slot('header', 'Nuevo usuario')
 
-        @include('shared._errors')
+        <x-validation-errors />
 
         <form method="POST" action="{{ url('usuarios') }}">
             @include('users._fields')
