@@ -3,42 +3,18 @@
 @section('title', "Crear usuario")
 
 @section('content')
-    <div class="card">
-        <h4 class="card-header">Crear usuario</h4>
-        <div class="card-body">
+    <x-card>
+        @slot('header', 'Nuevo usuario')
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <h6>Por favor corrige los errores debajo:</h6>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        <x-validation-errors />
 
-            <form method="POST" action="{{ url('usuarios') }}">
-                {{ csrf_field() }}
+        <form method="POST" action="{{ url('usuarios') }}">
+            @include('users._fields')
 
-                <div class="form-group">
-                    <label for="name">Nombre:</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Pedro Perez" value="{{ old('name') }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email') }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 6 caracteres">
-                </div>
-
+            <div class="form-group mt-4">
                 <button type="submit" class="btn btn-primary">Crear usuario</button>
                 <a href="{{ route('users.index') }}" class="btn btn-link">Regresar al listado de usuarios</a>
-            </form>
-        </div>
-    </div>
+            </div>
+        </form>
+    </x-card>
 @endsection

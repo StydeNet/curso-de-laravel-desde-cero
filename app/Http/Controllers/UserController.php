@@ -2,25 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\Profession;
+use App\Models\Skill;
+use App\Sortable;
+use App\Models\User;
+use App\Models\UserFilter;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request, Sortable $sortable)
     {
-        //$users = DB::table('users')->get();
-        $users = User::all();
+        $users = User::query()
+            ->with('team', 'skills', 'profile.profession')
+            ->withLastLogin()
+            ->onlyTrashedIf($request->routeIs('users.trashed'))
+            ->applyFilters()
+            ->orderByDesc('created_at')
+            ->paginate();
 
-        $title = 'Listado de usuarios';
+        $sortable->appends($users->parameters());
 
-//        return view('users.index')
-//            ->with('users', User::all())
-//            ->with('title', 'Listado de usuarios');
-
-        return view('users.index', compact('title', 'users'));
+        return view('users.index', [
+            'view' => $request->routeIs('users.trashed') ? 'trash' : 'index',
+            'users' => $users,
+            'skills' => Skill::orderBy('name')->get(),
+            'checkedSkills' => collect(request('skills')),
+            'sortable' => $sortable,
+        ]);
     }
 
     public function show(User $user)
@@ -30,56 +41,50 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return $this->form('users.create', new User);
     }
 
-    public function store()
+    public function store(CreateUserRequest $request)
     {
-        $data = request()->validate([
-            'name' => 'required',
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => 'required',
-        ], [
-            'name.required' => 'El campo nombre es obligatorio'
-        ]);
-
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-        ]);
+        $request->createUser();
 
         return redirect()->route('users.index');
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', ['user' => $user]);
+        return $this->form('users.edit', $user);
     }
 
-    public function update(User $user)
+    protected function form($view, User $user)
     {
-        $data = request()->validate([
-            'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
-            'password' => '',
+        return view($view, [
+            'professions' => Profession::orderBy('title', 'ASC')->get(),
+            'skills' => Skill::orderBy('name', 'ASC')->get(),
+            'user' => $user,
         ]);
+    }
 
-        if ($data['password'] != null) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
-        }
-
-        $user->update($data);
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        $request->updateUser($user);
 
         return redirect()->route('users.show', ['user' => $user]);
     }
 
-    function destroy(User $user)
+    public function trash(User $user)
     {
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $user->forceDelete();
+
+        return redirect()->route('users.trashed');
     }
 }

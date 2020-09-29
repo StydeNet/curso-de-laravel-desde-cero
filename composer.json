@@ -5,26 +5,26 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
+        "php": "^7.3",
         "fideloper/proxy": "~4.0",
-        "laravel/framework": "5.6.*",
-        "laravel/tinker": "~1.0"
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.0",
+        "laravel/tinker": "^2.0"
     },
     "require-dev": {
-        "filp/whoops": "~2.0",
-        "nunomaduro/collision": "~1.1",
+        "beyondcode/laravel-dump-server": "^1.0",
+        "barryvdh/laravel-debugbar": "^3.4",
+        "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~7.0",
-        "symfony/thanks": "^1.0"
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
@@ -54,5 +54,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

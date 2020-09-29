@@ -1,49 +1,47 @@
-@extends('layout')
+<x-app-layout>
 
-@section('title', 'Usuarios')
+    <x-slot name="title">Usuarios</x-slot>
 
-@section('content')
     <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">{{ $title }}</h1>
+        <h1 class="pb-1">
+            {{ trans("users.title.{$view}") }}
+        </h1>
         <p>
-            <a href="{{ route('users.create') }}" class="btn btn-primary">Nuevo usuario</a>
+        @if ($view == 'index')
+            <a href="{{ route('users.trashed') }}" class="btn btn-outline-dark">Ver papelera</a>
+            <a href="{{ route('users.create') }}" class="btn btn-dark">Nuevo usuario</a>
+        @else
+            <a href="{{ route('users.index') }}" class="btn btn-outline-dark">Regresar al listado de usuarios</a>
+        @endif
         </p>
     </div>
 
+    @includeWhen($view == 'index', 'users._filters')
+
     @if ($users->isNotEmpty())
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($users as $user)
-        <tr>
-            <th scope="row">{{ $user->id }}</th>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>
-                <form action="{{ route('users.destroy', $user) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <a href="{{ route('users.show', $user) }}" class="btn btn-link"><span class="oi oi-eye"></span></a>
-                    <a href="{{ route('users.edit', $user) }}" class="btn btn-link"><span class="oi oi-pencil"></span></a>
-                    <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+
+    <div class="table-responsive-lg">
+        <table class="table table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"><a href="{{ $sortable->url('name') }}" class="{{ $sortable->classes('name') }}">Nombre <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="{{ $sortable->url('email') }}" class="{{ $sortable->classes('email') }}">Correo <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="{{ $sortable->url('date') }}" class="{{ $sortable->classes('date') }}">Registrado el <i class="icon-sort"></i></a></th>
+                <th scope="col"><a href="{{ $sortable->url('login') }}" class="{{ $sortable->classes('login') }}">Último login <i class="icon-sort"></i></a></th>
+                <th scope="col" class="text-right th-actions">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                @each('users._row', $users, 'user')
+            </tbody>
+        </table>
+
+        {{ $users->links() }}
+        <p>Viendo página {{ $users->currentPage() }} de {{ $users->lastPage() }}</p>
+    </div>
     @else
         <p>No hay usuarios registrados.</p>
     @endif
-@endsection
 
-@section('sidebar')
-    @parent
-@endsection
+</x-app-layout>

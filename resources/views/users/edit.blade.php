@@ -3,36 +3,20 @@
 @section('title', "Crear usuario")
 
 @section('content')
-    <h1>Editar usuario</h1>
+    <x-card>
+        @slot('header', 'Editar usuario')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <h6>Por favor corrige los errores debajo:</h6>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @include('shared._errors')
 
-    <form method="POST" action="{{ url("usuarios/{$user->id}") }}">
-        {{ method_field('PUT') }}
-        {{ csrf_field() }}
+        <form method="POST" action="{{ url("usuarios/{$user->id}") }}">
+            {{ method_field('PUT') }}
 
-        <label for="name">Nombre:</label>
-        <input type="text" name="name" id="name" placeholder="Pedro Perez" value="{{ old('name', $user->name) }}">
-        <br>
-        <label for="email">Correo electrónico:</label>
-        <input type="email" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email', $user->email) }}">
-        <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password" placeholder="Mayor a 6 caracteres">
-        <br>
-        <button type="submit">Actualizar usuario</button>
-    </form>
+            @include('users._fields')
 
-    <p>
-        <a href="{{ route('users.index') }}">Regresar al listado de usuarios</a>
-    </p>
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Actualizar usuario</button>
+                <a href="{{ route('users.index') }}" class="btn btn-link">Regresar al listado de usuarios</a>
+            </div>
+        </form>
+    </x-card>
 @endsection
