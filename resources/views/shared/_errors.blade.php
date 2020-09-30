@@ -1,3 +1,4 @@
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <h6>Por favor corrige los errores debajo:</h6>

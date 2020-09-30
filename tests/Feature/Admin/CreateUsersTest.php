@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Admin;
 
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\Skill;
@@ -32,6 +34,30 @@ class CreateUsersTest extends TestCase
         $skillB = Skill::factory()->create();
 
         $this->get('/usuarios/nuevo')
+            ->assertStatus(200)
+            ->assertSee('Crear usuario')
+            ->assertViewHas('professions', function ($professions) use ($profession) {
+                return $professions->contains($profession);
+            })
+            ->assertViewHas('skills', function ($skills) use ($skillA, $skillB) {
+                return $skills->contains($skillA) && $skills->contains($skillB);
+            });
+    }
+
+    /** @test */
+    function it_displays_validation_errors_in_the_new_user_form()
+    {
+        $profession = Profession::factory()->create();
+
+        $skillA = Skill::factory()->create();
+        $skillB = Skill::factory()->create();
+
+        $this->withSession([
+                'errors' => new MessageBag([
+                    'email' => ['Must be unique'],
+                ])
+            ])
+            ->get('/usuarios/nuevo')
             ->assertStatus(200)
             ->assertSee('Crear usuario')
             ->assertViewHas('professions', function ($professions) use ($profession) {
@@ -184,7 +210,8 @@ class CreateUsersTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $this->post('/usuarios/', $this->withData([
+        $this->from('usuarios/nuevo')
+            ->post('/usuarios/', $this->withData([
                 'email' => '',
             ]))
             ->assertSessionHasErrors(['email']);
