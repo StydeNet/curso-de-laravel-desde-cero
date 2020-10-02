@@ -25,7 +25,10 @@ class CreateUsersTest extends TestCase
         'state' => 'active',
     ];
 
-    /** @test */
+    /**
+     * @test
+     * @enlighten {"exclude": true}
+     */
     function it_loads_the_new_users_page()
     {
         $profession = Profession::factory()->create();
@@ -53,19 +56,15 @@ class CreateUsersTest extends TestCase
         $skillB = Skill::factory()->create();
 
         $this->withSession([
-                'errors' => new MessageBag([
-                    'email' => ['Must be unique'],
-                ])
+                'errors' => (new ViewErrorBag)
+                    ->put('default', new MessageBag([
+                        'email' => ['The field email must be unique'],
+                    ])),
             ])
             ->get('/usuarios/nuevo')
             ->assertStatus(200)
-            ->assertSee('Crear usuario')
-            ->assertViewHas('professions', function ($professions) use ($profession) {
-                return $professions->contains($profession);
-            })
-            ->assertViewHas('skills', function ($skills) use ($skillA, $skillB) {
-                return $skills->contains($skillA) && $skills->contains($skillB);
-            });
+            ->assertSeeText('Crear usuario')
+            ->assertSeeText('The field email must be unique');
     }
 
     /** @test */

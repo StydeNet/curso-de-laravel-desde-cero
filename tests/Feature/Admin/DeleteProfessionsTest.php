@@ -25,6 +25,12 @@ class DeleteProfessionsTest extends TestCase
     }
 
     /** @test */
+    function users_can_delete_all_the_professions()
+    {
+        $this->markTestIncomplete();
+    }
+
+    /** @test */
     function a_profession_associated_to_a_profile_cannot_be_deleted()
     {
         $this->withExceptionHandling();

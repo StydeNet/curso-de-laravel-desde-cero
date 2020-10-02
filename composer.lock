@@ -6345,7 +6345,7 @@
             "dist": {
                 "type": "path",
                 "url": "../enlighten",
-                "reference": "0253b1a5686fc02b0e315c991a9a591a23adbe57"
+                "reference": "9b30dde3b12af9047d262524f2bcfcead484d9dd"
             },
             "require": {
                 "ext-json": "*",

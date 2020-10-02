@@ -41,6 +41,10 @@ return [
             'pattern' => ['*Users*']
         ],
         [
+            'name' => 'Professions',
+            'pattern' => ['*Professions*']
+        ],
+        [
             'name' => 'Other Modules',
             'pattern' => ['*'],
         ],
