@@ -12,6 +12,34 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
+//    /** @test */
+//    function sums_two_numbers()
+//    {
+//        // @enlighten('SumTest::sums_two_numbers')
+//
+//        $a = 2;
+//        $b = 3;
+//
+//        enlighten(function ($a, $b) {
+//            return sum($a, $b); // 5
+//        }, $a, $b);
+//
+//        $user = User::create();
+//
+//        $post = new Post;
+//
+//        //User { /**/}
+//        //Post { /**/ }
+//
+//        $post = enlighten(function ($user, $post) {
+//            return $user->addPost($post);
+//        });
+//
+//        // Post { author_id }
+//
+//        $this->assertSame($user->id, $post->author_id);
+//    }
+
     /** @test */
     function gets_the_last_login_datetime_of_each_user()
     {

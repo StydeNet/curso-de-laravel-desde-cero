@@ -27,18 +27,18 @@ return [
 
     'response' => [
         'headers' => [
-            'ignore' => ['location', 'set-cookie'],
+            'ignore' => ['set-cookie'],
             'overwrite' => [],
         ]
     ],
 
     // Configure the test suites that will be shown in the frontend.
-    // 'test-suites' => [...],
+     'test-suites' => ['Feature' => 'Feature'],
 
     'modules' => [
         [
             'name' => 'Users',
-            'pattern' => ['*Users*']
+            'pattern' => ['*Users*'],
         ],
         [
             'name' => 'Professions',

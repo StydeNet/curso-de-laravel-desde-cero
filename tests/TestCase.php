@@ -4,10 +4,11 @@ namespace Tests;
 
 use Illuminate\Testing\TestResponse;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Styde\Enlighten\RecordsTestStatus;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, TestHelpers, DetectRepeatedQueries;
+    use CreatesApplication, TestHelpers, DetectRepeatedQueries, RecordsTestStatus;
 
     protected $defaultData = [];
 
@@ -20,6 +21,8 @@ abstract class TestCase extends BaseTestCase
         $this->withoutExceptionHandling();
 
         $this->enableQueryLog();
+
+        $this->recordTestStatus();
     }
 
     protected function tearDown(): void

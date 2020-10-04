@@ -47,7 +47,7 @@ class DeleteProfessionsTest extends TestCase
         /**
          * @FIXME
          */
-        $response->assertStatus(500);
+        $response->assertStatus(400);
 
         $this->assertDatabaseHas('professions', [
             'id' => $profession->id,
