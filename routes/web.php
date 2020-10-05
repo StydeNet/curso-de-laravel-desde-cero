@@ -43,3 +43,7 @@ Route::delete('/profesiones/{profession}', [ProfessionController::class, 'destro
 
 // Skills
 Route::get('/habilidades/', [SkillController::class, 'index']);
+
+Route::get('wrong', function () {
+    throw new \Exception('wrong');
+});
