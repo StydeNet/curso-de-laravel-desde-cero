@@ -28,7 +28,11 @@ class UserSeeder extends Seeder
 
         $this->createAdmin();
 
-        foreach(range(1, 999) as $i) {
+        $this->createRandomUser([
+            'api_token' => 'user-api-token',
+        ]);
+
+        foreach(range(1, 99) as $i) {
             $this->createRandomUser();
         }
     }
@@ -52,6 +56,7 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'created_at' => now(),
             'active' => true,
+            'api_token' => 'admin-api-token',
         ]);
 
         $admin->skills()->attach($this->skills);
@@ -62,13 +67,13 @@ class UserSeeder extends Seeder
         ]);
     }
 
-    protected function createRandomUser()
+    protected function createRandomUser(array $customAttributes = [])
     {
-        $user = User::factory()->create([
+        $user = User::factory()->create(array_merge([
             'team_id' => rand(0, 2) ? null : $this->teams->random()->id,
             'active' => rand(0, 3) ? true : false,
             'created_at' => now()->subDays(rand(1, 90)),
-        ]);
+        ], $customAttributes));
 
         $user->skills()->attach($this->skills->random(rand(0, 7)));
 
