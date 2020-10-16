@@ -4,19 +4,9 @@ namespace Tests\Unit;
 
 use App\Rules\SortableColumn;
 use PHPUnit\Framework\TestCase;
-use Styde\Enlighten\Tests\EnlightenSetup;
 
 class SortableColumnTest extends TestCase
 {
-    use EnlightenSetup;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->setUpEnlighten();
-    }
-
     /** @test */
     function validates_sortable_values()
     {

@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -1840,6 +1842,8 @@ video {
 .prose-2xl > :last-child {
   margin-bottom: 0;
 }
+
+/* purgecss end ignore */
 
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
@@ -22461,6 +22465,8 @@ video {
           animation: bounce 1s infinite;
 }
 
+/* purgecss start ignore */
+
 /* PrismJS 1.20.0
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+diff+json+markup-templating+php+php-extras+plsql+sql+xml-doc+yaml&plugins=line-highlight+normalize-whitespace+toolbar+copy-to-clipboard+diff-highlight */
 
@@ -22740,6 +22746,12 @@ pre > code.diff-highlight .token.inserted:not(.prefix) {
          columns: 2;
   }
 }
+
+[x-cloak] {
+  display: none;
+}
+
+/* purgecss end ignore */
 
 @media (min-width: 640px) {
   .sm\:container {

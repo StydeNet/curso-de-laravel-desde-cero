@@ -20,7 +20,7 @@ class ProfessionController extends Controller
 
     public function destroy(Profession $profession)
     {
-//        abort_if($profession->profiles()->exists(), 400, 'Cannot delete a profession linked to a profile.');
+        abort_if($profession->profiles()->exists(), 400, 'Cannot delete a profession linked to a profile.');
 
         $profession->delete();
 

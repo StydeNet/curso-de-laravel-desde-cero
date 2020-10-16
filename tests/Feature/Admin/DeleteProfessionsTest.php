@@ -23,12 +23,12 @@ class DeleteProfessionsTest extends TestCase
 
         $this->assertDatabaseEmpty('professions');
     }
-
-    /** @test */
-    function users_can_delete_all_the_professions()
-    {
-        $this->markTestIncomplete();
-    }
+//
+//    /** @test */
+//    function users_can_delete_all_the_professions()
+//    {
+//        $this->markTestIncomplete();
+//    }
 
     /** @test */
     function a_profession_associated_to_a_profile_cannot_be_deleted()
@@ -44,9 +44,6 @@ class DeleteProfessionsTest extends TestCase
 
         $response = $this->delete("profesiones/{$profession->id}");
 
-        /**
-         * @FIXME
-         */
         $response->assertStatus(400);
 
         $this->assertDatabaseHas('professions', [

@@ -8,7 +8,7 @@ trait DetectRepeatedQueries
 {
     public function enableQueryLog()
     {
-        DB::connection('enlighten')->enableQueryLog();
+        DB::enableQueryLog();
     }
 
     /**
@@ -16,7 +16,7 @@ trait DetectRepeatedQueries
      */
     public function assertNotRepeatedQueries()
     {
-        $queries = array_column(DB::connection('enlighten')->getQueryLog(), 'query');
+        $queries = array_column(DB::getQueryLog(), 'query');
 
         $selects = array_filter($queries, function ($query) {
             return strpos($query, 'select') === 0;
@@ -35,6 +35,6 @@ trait DetectRepeatedQueries
 
     public function flushQueryLog()
     {
-        DB::connection('enlighten')->flushQueryLog();
+        DB::flushQueryLog();
     }
 }
