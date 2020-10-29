@@ -1,10 +1,14 @@
 # Enlighten Demo Panel
 
-This is just a demo project, so you can try Enlighten.
+This is only a demo project, so you can try Laravel Enlighten.
 
 The project is built in Laravel 8 and it's using Enlighten ^0.3.
 
-To start, install as normal:
+![Enlighten preview](./preview.png "Enlighten Dashboard preview")
+
+## Get started
+
+To start, install as a normal Laravel app:
 
 1. Clone project to your local environment
 2. Copy/paste `.env.example` as `.env`
@@ -15,4 +19,3 @@ To start, install as normal:
 6. Run your tests
 7. Start the local server with `php artisan serve` if needed
 8. Visit `http://127.0.0.1:8000/enlighten` (change the URL if needed).
-
