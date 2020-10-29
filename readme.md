@@ -10,13 +10,15 @@ The project is built in Laravel 8 and it's using Enlighten ^0.3.
 
 To start, install as a normal Laravel app:
 
-1. Clone project to your local environment
-2. Copy/paste `.env.example` as `.env`
-3. Configure your database:
-    * Create 3 databases: `styde_panel`, `styde_panel_tests` and `styde_panel_enlighten`
-4. Run `composer install`
-5. Run `php artisan key:generate`
-6. Run your tests
-7. Start the local server with `php artisan serve` if needed
-8. Visit `http://127.0.0.1:8000/enlighten` (change the URL if needed).
-9. To try the project in the browser, run `php artisan migrate --seed` and go to `/users`
+1. Clone the project in your local environment
+2. Move to the `enlighten` branch (`git checkout enlighten`)
+3. Create 3 databases: `styde_panel`, `styde_panel_tests` and `styde_panel_enlighten`
+4. Copy/paste `.env.example` as `.env` in the root directory
+5. Configure your database in the `.env` file (the database should be `styde_panel`)
+6. Change the `APP_URL` value to point to your project homepage. For example: `APP_URL=http://127.0.0.1:8000`
+6. Run `composer install`
+7. Run `php artisan key:generate`
+8. Run your tests
+9. Start the local server with `php artisan serve` if needed
+10. Visit `http://127.0.0.1:8000/enlighten` (change the URL if needed).
+11. To try the project in the browser, run `php artisan migrate --seed` and go to `/users`
