@@ -24,7 +24,7 @@ class SearchUsersTest extends TestCase
             'email' => 'ellie@example.com',
         ]);
 
-        $this->get('/usuarios?search=Joel')
+        $this->get('/users?search=Joel')
             ->assertStatus(200)
             ->assertViewHas('users', function ($users) use ($joel, $ellie) {
                 return $users->contains($joel) && !$users->contains($ellie);
@@ -44,7 +44,7 @@ class SearchUsersTest extends TestCase
             'email' => 'ellie@example.com',
         ]);
 
-        $this->get('/usuarios?search=Jo')
+        $this->get('/users?search=Jo')
             ->assertStatus(200)
             ->assertViewHas('users', function ($users) use ($joel, $ellie) {
                 return $users->contains($joel) && !$users->contains($ellie);
@@ -62,7 +62,7 @@ class SearchUsersTest extends TestCase
             'email' => 'ellie@example.net',
         ]);
 
-        $this->get('/usuarios?search=joel@example.com')
+        $this->get('/users?search=joel@example.com')
             ->assertStatus(200)
             ->assertViewHas('users', function ($users) use ($joel, $ellie) {
                 return $users->contains($joel) && !$users->contains($ellie);
@@ -80,7 +80,7 @@ class SearchUsersTest extends TestCase
             'email' => 'ellie@example.net',
         ]);
 
-        $this->get('/usuarios?search=joel@example')
+        $this->get('/users?search=joel@example')
             ->assertStatus(200)
             ->assertViewHas('users', function ($users) use ($joel, $ellie) {
                 return $users->contains($joel) && !$users->contains($ellie);
@@ -105,7 +105,7 @@ class SearchUsersTest extends TestCase
             'team_id' => Team::factory()->create(['name' => 'Firefly'])->id,
         ]);
 
-        $response = $this->get('/usuarios?search=Firefly')
+        $response = $this->get('/users?search=Firefly')
             ->assertStatus(200);
 //            ->assertViewHas('users', function ($users) use ($marlene, $joel, $ellie) {
 //                return $users->contains($marlene)
@@ -137,7 +137,7 @@ class SearchUsersTest extends TestCase
             'team_id' => Team::factory()->create(['name' => 'Firefly'])->id,
         ]);
 
-        $response = $this->get('/usuarios?search=Fire')
+        $response = $this->get('/users?search=Fire')
             ->assertStatus(200);
 
         $response->assertViewCollection('users')

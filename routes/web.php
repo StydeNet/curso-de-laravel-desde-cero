@@ -10,39 +10,39 @@ Route::get('/', function () {
 });
 
 // Users
-Route::get('/usuarios', [UserController::class, 'index'])
+Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');
 
-Route::get('/usuarios/{user}', [UserController::class, 'show'])
+Route::get('/users/{user}', [UserController::class, 'show'])
     ->where('user', '[0-9]+')
     ->name('users.show');
 
-Route::get('/usuarios/nuevo', [UserController::class, 'create'])->name('users.create');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 
-Route::post('/usuarios', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store']);
 
-Route::get('/usuarios/{user}/editar', [UserController::class, 'edit'])->name('users.edit');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 
-Route::put('/usuarios/{user}', [UserController::class, 'update']);
+Route::put('/users/{user}', [UserController::class, 'update']);
 
-Route::get('/usuarios/papelera', [UserController::class, 'index'])->name('users.trashed');
+Route::get('/users/trash', [UserController::class, 'index'])->name('users.trashed');
 
-Route::patch('/usuarios/{user}/papelera', [UserController::class, 'trash'])->name('users.trash');
+Route::patch('/users/{user}/trash', [UserController::class, 'trash'])->name('users.trash');
 
-Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // Profile
-Route::get('/editar-perfil/', [ProfileController::class, 'edit']);
+Route::get('/edit-profile/', [ProfileController::class, 'edit']);
 
-Route::put('/editar-perfil/', [ProfileController::class, 'update']);
+Route::put('/edit-profile/', [ProfileController::class, 'update']);
 
 // Professions
-Route::get('/profesiones/', [ProfessionController::class, 'index']);
+Route::get('/professions/', [ProfessionController::class, 'index']);
 
-Route::delete('/profesiones/{profession}', [ProfessionController::class, 'destroy']);
+Route::delete('/professions/{profession}', [ProfessionController::class, 'destroy']);
 
 // Skills
-Route::get('/habilidades/', [SkillController::class, 'index']);
+Route::get('/skills/', [SkillController::class, 'index']);
 
 Route::get('wrong', function () {
     throw new \Exception('wrong');

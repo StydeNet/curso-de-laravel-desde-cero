@@ -1,29 +1,29 @@
 {{ csrf_field() }}
 
 <div class="form-group">
-    <label for="name">Nombre:</label>
+    <label for="name">{{ __('Name') }}:</label>
     <input type="text" class="form-control" name="name" id="name" placeholder="Pedro Perez" value="{{ old('name', $user->name) }}">
 </div>
 
 <div class="form-group">
-    <label for="email">Correo electrónico:</label>
+    <label for="email">{{ __('Email') }}:</label>
     <input type="email" class="form-control" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email', $user->email) }}">
 </div>
 
 <div class="form-group">
-    <label for="password">Contraseña:</label>
+    <label for="password">{{ __('Password') }}:</label>
     <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 6 caracteres">
 </div>
 
 <div class="form-group">
-    <label for="bio">Bio:</label>
+    <label for="bio">{{ __('Bio') }}:</label>
     <textarea name="bio" class="form-control" id="bio">{{ old('bio', $user->profile->bio) }}</textarea>
 </div>
 
 <div class="form-group">
-    <label for="profession_id">Profesión</label>
+    <label for="profession_id">{{ __('Profession') }}</label>
     <select name="profession_id" id="profession_id" class="form-control">
-        <option value="">Selecciona una profesión</option>
+        <option value="">{{ __('Select profession') }}</option>
         @foreach($professions as $profession)
             <option value="{{ $profession->id }}"{{ old('profession_id', $user->profile->profession_id) == $profession->id ? ' selected' : '' }}>
                 {{ $profession->title }}
@@ -38,7 +38,7 @@
            value="{{ old('twitter', $user->profile->twitter) }}">
 </div>
 
-<h5>Habilidades</h5>
+<h5>{{ __('Skills') }}</h5>
 
 @foreach($skills as $skill)
     <div class="form-check form-check-inline">
@@ -52,7 +52,7 @@
     </div>
 @endforeach
 
-<h5 class="mt-3">Rol</h5>
+<h5 class="mt-3">{{ __('Role') }}</h5>
 
 @foreach(trans('users.roles') as $role => $name)
     <div class="form-check form-check-inline">
@@ -66,7 +66,7 @@
     </div>
 @endforeach
 
-<h5 class="mt-3">Estado</h5>
+<h5 class="mt-3">{{ __('Status') }}</h5>
 
 @foreach(trans('users.states') as $state => $label)
     <div class="form-check form-check-inline">

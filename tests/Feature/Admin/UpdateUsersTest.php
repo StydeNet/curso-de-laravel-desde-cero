@@ -28,10 +28,10 @@ class UpdateUsersTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->get("/usuarios/{$user->id}/editar") // usuarios/5/editar
+        $this->get("/users/{$user->id}/edit") // users/5/edit
         ->assertStatus(200)
             ->assertViewIs('users.edit')
-            ->assertSee('Editar usuario')
+            ->assertSee('Edit User')
             ->assertViewHas('user', function ($viewUser) use ($user) {
                 return $viewUser->id === $user->id;
             });
@@ -55,7 +55,7 @@ class UpdateUsersTest extends TestCase
         $newSkill1 = Skill::factory()->create();
         $newSkill2 = Skill::factory()->create();
 
-        $this->put("/usuarios/{$user->id}", [
+        $this->put("/users/{$user->id}", [
             'name' => 'Duilio',
             'email' => 'duilio@styde.net',
             'password' => '123456',
@@ -65,7 +65,7 @@ class UpdateUsersTest extends TestCase
             'profession_id' => $newProfession->id,
             'skills' => [$newSkill1->id, $newSkill2->id],
             'state' => 'inactive',
-        ])->assertRedirect("/usuarios/{$user->id}");
+        ])->assertRedirect("/users/{$user->id}");
 
         $this->assertCredentials([
             'name' => 'Duilio',
@@ -104,8 +104,8 @@ class UpdateUsersTest extends TestCase
         $oldSkill2 = Skill::factory()->create();
         $user->skills()->attach([$oldSkill1->id, $oldSkill2->id]);
 
-        $this->put("/usuarios/{$user->id}", $this->withData([]))
-            ->assertRedirect("/usuarios/{$user->id}");
+        $this->put("/users/{$user->id}", $this->withData([]))
+            ->assertRedirect("/users/{$user->id}");
 
         $this->assertDatabaseEmpty('user_skill');
     }
@@ -117,11 +117,11 @@ class UpdateUsersTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'name' => '',
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['name']);
 
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
@@ -134,11 +134,11 @@ class UpdateUsersTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'email' => 'correo-no-valido',
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['email']);
 
         $this->assertDatabaseMissing('users', ['name' => 'Duilio Palacios']);
@@ -157,11 +157,11 @@ class UpdateUsersTest extends TestCase
             'email' => 'duilio@styde.net'
         ]);
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'email' => 'existing-email@example.com',
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['email']);
 
         //
@@ -174,12 +174,12 @@ class UpdateUsersTest extends TestCase
             'email' => 'duilio@styde.net'
         ]);
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'name' => 'Duilio Palacios',
                 'email' => 'duilio@styde.net',
             ]))
-            ->assertRedirect("usuarios/{$user->id}"); // (users.show)
+            ->assertRedirect("users/{$user->id}"); // (users.show)
 
         $this->assertDatabaseHas('users', [
             'name' => 'Duilio Palacios',
@@ -196,11 +196,11 @@ class UpdateUsersTest extends TestCase
             'password' => bcrypt($oldPassword)
         ]);
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'password' => '',
             ]))
-            ->assertRedirect("usuarios/{$user->id}");
+            ->assertRedirect("users/{$user->id}");
 
         $this->assertCredentials([
             'name' => 'Duilio',
@@ -216,11 +216,11 @@ class UpdateUsersTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'role' => '',
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
@@ -233,11 +233,11 @@ class UpdateUsersTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'state' => null,
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['state']);
 
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
@@ -250,11 +250,11 @@ class UpdateUsersTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->from("usuarios/{$user->id}/editar")
-            ->put("usuarios/{$user->id}", $this->withData([
+        $this->from("users/{$user->id}/edit")
+            ->put("users/{$user->id}", $this->withData([
                 'state' => 'invalid',
             ]))
-            ->assertRedirect("usuarios/{$user->id}/editar")
+            ->assertRedirect("users/{$user->id}/edit")
             ->assertSessionHasErrors(['state']);
 
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);

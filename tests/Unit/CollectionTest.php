@@ -15,7 +15,7 @@ class CollectionTest extends TestCase
      */
     function can_create_a_collection_macro()
     {
-        $callback = enlighten(function () {
+        $names = enlighten(function () {
             // use Illuminate\Support\Collection;
             // use Illuminate\Support\Str;
 
@@ -30,20 +30,20 @@ class CollectionTest extends TestCase
             return $collection->toUpper()->all();
         });
 
-        $this->assertSame(['FIRST', 'SECOND'], $callback());
+        $this->assertSame(['FIRST', 'SECOND'], $names);
     }
 
     /** @test */
     function can_add_users_to_a_collection()
     {
-        $user = new User([
-            'name' => 'Duilio',
-        ]);
+        $collection = enlighten(function () {
+            $user = new User([
+                'name' => 'Duilio',
+            ]);
 
-        $code = enlighten(function ($user) {
             return collect()->add($user);
         });
 
-        $this->assertSame('Duilio', $code($user)->first()->name);
+        $this->assertSame('Duilio',$collection->first()->name);
     }
 }

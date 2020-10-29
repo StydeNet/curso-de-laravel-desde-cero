@@ -19,7 +19,7 @@ class ListSkillsTest extends TestCase
 
         Skill::factory()->create(['name' => 'CSS']);
 
-        $this->get('/habilidades')
+        $this->get('/skills')
             ->assertStatus(200)
             ->assertSeeInOrder([
                 'CSS',

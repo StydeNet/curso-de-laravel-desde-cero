@@ -57,8 +57,8 @@ class UserSeeder extends Seeder
         $admin->skills()->attach($this->skills);
 
         $admin->profile->update([
-            'bio' => 'Programador, profesor, editor, escritor, social media manager',
-            'profession_id' => $this->professions->firstWhere('title', 'Desarrollador back-end')->id,
+            'bio' => 'Laravel Developer',
+            'profession_id' => $this->professions->firstWhere('title', 'Backend Developer')->id,
         ]);
     }
 

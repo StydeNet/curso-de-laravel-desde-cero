@@ -1,4 +1,4 @@
-<form method="get" action="{{ url('usuarios') }}">
+<form method="get" action="{{ url('/users') }}">
     <div class="row row-filters">
         <div class="col-md-6">
             @foreach (trans('users.filters.states') as $value => $text)
@@ -13,7 +13,7 @@
     <div class="row row-filters">
         <div class="col-md-6">
             <div class="form-inline form-search">
-                <input type="search" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="Buscar...">
+                <input type="search" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="{{ __('Search') }}...">
                 &nbsp;
                 <div class="btn-group">
                     <select name="role" id="role" class="select-field">
@@ -25,7 +25,7 @@
                 &nbsp;
                 <div class="btn-group drop-skills">
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Habilidades
+                        {{ __('Skills') }}
                     </button>
                     <div class="drop-menu skills-list">
                     @foreach($skills as $skill)
@@ -46,15 +46,15 @@
 
         <div class="col-md-6 text-right">
             <div class="form-inline form-dates">
-                <label for="from" class="form-label-sm">Fecha</label>&nbsp;
+                <label for="from" class="form-label-sm">{{ __('date.title') }}</label>&nbsp;
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="Desde" value="{{ request('from') }}">
+                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="{{ __('date.from') }}" value="{{ request('from') }}">
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="Hasta" value="{{ request('to') }}">
+                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="{{ __('date.to') }}" value="{{ request('to') }}">
                 </div>
                 &nbsp;
-                <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                <button type="submit" class="btn btn-sm btn-primary">{{ __('Filter') }}</button>
             </div>
         </div>
     </div>

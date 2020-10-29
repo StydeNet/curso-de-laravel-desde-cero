@@ -13,18 +13,18 @@ class ListProfessionsTest extends TestCase
     /** @test */
     function it_shows_the_professions_list()
     {
-        Profession::factory()->create(['title' => 'Diseñador']);
+        Profession::factory()->create(['title' => 'Designer']);
 
-        Profession::factory()->create(['title' => 'Programador']);
+        Profession::factory()->create(['title' => 'Developer']);
 
-        Profession::factory()->create(['title' => 'Administrador']);
+        Profession::factory()->create(['title' => 'Admin']);
 
-        $this->get('/profesiones')
+        $this->get('/professions')
             ->assertStatus(200)
             ->assertSeeInOrder([
-                'Administrador',
-                'Diseñador',
-                'Programador',
+                'Admin',
+                'Designer',
+                'Developer',
             ]);
     }
 }

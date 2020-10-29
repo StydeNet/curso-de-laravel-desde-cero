@@ -1,10 +1,7 @@
-@extends('layout')
-
-@section('title', "Crear usuario")
-
-@section('content')
+<x-app-layout>
+    <x-slot name="title">@lang('Edit User')</x-slot>
     <x-card>
-        @slot('header', 'Editar usuario')
+        @slot('header', trans('Edit User'))
 
         @include('shared._errors')
 
@@ -14,9 +11,9 @@
             @include('users._fields')
 
             <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary">Actualizar usuario</button>
-                <a href="{{ route('users.index') }}" class="btn btn-link">Regresar al listado de usuarios</a>
+                <button type="submit" class="btn btn-primary">{{ __('Update User') }}</button>
+                <a href="{{ route('users.index') }}" class="btn btn-link">{{ __('Go back') }}</a>
             </div>
         </form>
     </x-card>
-@endsection
+</x-app-layout>

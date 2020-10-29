@@ -18,7 +18,7 @@ class FilterUsersTest extends TestCase
 
         $inactiveUser = User::factory()->inactive()->create();
 
-        $response = $this->get('/usuarios?state=active');
+        $response = $this->get('/users?state=active');
 
         $response->assertViewCollection('users')
             ->contains($activeUser)
@@ -32,7 +32,7 @@ class FilterUsersTest extends TestCase
 
         $inactiveUser = User::factory()->inactive()->create();
 
-        $response = $this->get('usuarios?state=inactive');
+        $response = $this->get('users?state=inactive');
 
         $response->assertStatus(200);
 
@@ -48,7 +48,7 @@ class FilterUsersTest extends TestCase
 
         $user = User::factory()->create(['role' => 'user']);
 
-        $response = $this->get('/usuarios?role=admin');
+        $response = $this->get('/users?role=admin');
 
         $response->assertViewCollection('users')
             ->contains($admin)
@@ -62,7 +62,7 @@ class FilterUsersTest extends TestCase
 
         $user = User::factory()->create(['role' => 'user']);
 
-        $response = $this->get('usuarios?role=user');
+        $response = $this->get('users?role=user');
 
         $response->assertStatus(200);
 
@@ -86,7 +86,7 @@ class FilterUsersTest extends TestCase
         $frontendDev = User::factory()->create();
         $frontendDev->skills()->attach($css);
 
-        $response = $this->get("usuarios?skills[0]={$php->id}&skills[1]={$css->id}");
+        $response = $this->get("users?skills[0]={$php->id}&skills[1]={$css->id}");
 
         $response->assertStatus(200);
 
@@ -115,7 +115,7 @@ class FilterUsersTest extends TestCase
             'created_at' => '2018-09-30 23:59:59',
         ]);
 
-        $response = $this->get('usuarios?from=01/10/2018');
+        $response = $this->get('users?from=01/10/2018');
 
         $response->assertOk();
 
@@ -145,7 +145,7 @@ class FilterUsersTest extends TestCase
             'created_at' => '2018-09-30 23:59:59',
         ]);
 
-        $response = $this->get('usuarios?to=30/09/2018');
+        $response = $this->get('users?to=30/09/2018');
 
         $response->assertOk();
 

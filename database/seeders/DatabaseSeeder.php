@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,12 +34,12 @@ class DatabaseSeeder extends Seeder
 
     protected function truncateTables(array $tables)
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        Schema::disableForeignKeyConstraints();
 
         foreach ($tables as $table) {
             DB::table($table)->truncate();
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        Schema::enableForeignKeyConstraints();
     }
 }

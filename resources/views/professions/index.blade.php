@@ -1,19 +1,18 @@
-@extends('layout')
+<x-app-layout>
 
-@section('title', 'Profesiones')
+    <x-slot name="title">{{ __('Professions') }}</x-slot>
 
-@section('content')
     <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">Listado de profesiones</h1>
+        <h1 class="pb-1">{{ __('Professions') }}}</h1>
     </div>
 
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Perfiles</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">{{ __('Title') }}</th>
+            <th scope="col">{{ __('Profiles') }}</th>
+            <th scope="col">{{ __('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -35,8 +34,4 @@
         @endforeach
         </tbody>
     </table>
-@endsection
-
-@section('sidebar')
-    @parent
-@endsection
+</x-app-layout>>

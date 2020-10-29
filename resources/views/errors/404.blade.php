@@ -1,7 +1,5 @@
-@extends('layout')
+<x-app-layout>
+    <x-slot name="title">{{ __('Not Found') }}</x-slot>
 
-@section('title', "Página no encontrada")
-
-@section('content')
-    <h1>Página no encontrada</h1>
-@endsection
+    <h1>{{ __('Not Found') }}</h1>
+</x-app-layout>

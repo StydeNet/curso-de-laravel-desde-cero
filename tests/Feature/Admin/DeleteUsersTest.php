@@ -18,8 +18,8 @@ class DeleteUsersTest extends TestCase
 
         $user->skills()->attach(Skill::factory()->create());
 
-        $this->patch("usuarios/{$user->id}/papelera")
-            ->assertRedirect('usuarios');
+        $this->patch("users/{$user->id}/trash")
+            ->assertRedirect('users');
 
         // Option 1:
         $this->assertSoftDeleted('users', [
@@ -47,8 +47,8 @@ class DeleteUsersTest extends TestCase
             'deleted_at' => now()
         ]);
 
-        $this->delete("usuarios/{$user->id}")
-            ->assertRedirect('usuarios/papelera');
+        $this->delete("users/{$user->id}")
+            ->assertRedirect('users/trash');
 
         $this->assertDatabaseEmpty('users');
     }
@@ -62,7 +62,7 @@ class DeleteUsersTest extends TestCase
             'deleted_at' => null,
         ]);
 
-        $this->delete("usuarios/{$user->id}")
+        $this->delete("users/{$user->id}")
             ->assertStatus(404);
 
         $this->assertDatabaseHas('users', [

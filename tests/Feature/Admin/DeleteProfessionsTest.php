@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\User;
-use App\Models\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteProfessionsTest extends TestCase
@@ -17,18 +16,18 @@ class DeleteProfessionsTest extends TestCase
     {
         $profession = Profession::factory()->create();
 
-        $response = $this->delete("profesiones/{$profession->id}");
+        $response = $this->delete("professions/{$profession->id}");
 
         $response->assertRedirect();
 
         $this->assertDatabaseEmpty('professions');
     }
-//
-//    /** @test */
-//    function users_can_delete_all_the_professions()
-//    {
-//        $this->markTestIncomplete();
-//    }
+
+    /** @test */
+    function users_can_delete_all_the_professions()
+    {
+        $this->markTestIncomplete();
+    }
 
     /** @test */
     function a_profession_associated_to_a_profile_cannot_be_deleted()
@@ -42,7 +41,7 @@ class DeleteProfessionsTest extends TestCase
             'profession_id' => $profession->id,
         ]);
 
-        $response = $this->delete("profesiones/{$profession->id}");
+        $response = $this->delete("professions/{$profession->id}");
 
         $response->assertStatus(400);
 

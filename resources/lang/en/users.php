@@ -2,15 +2,15 @@
 
 return [
     'title' => [
-        'index' => 'Listado de usuarios',
-        'trash' => 'Papelera de usuarios',
+        'index' => 'Users List',
+        'trash' => 'Users Trash',
     ],
 
-    'roles' => ['admin' => 'Admin', 'user' => 'Usuario'],
-    'states' => ['active' => 'Activo', 'inactive' => 'Inactivo'],
+    'roles' => ['admin' => 'Admin', 'user' => 'User'],
+    'states' => ['active' => 'Active', 'inactive' => 'Inactive'],
 
     'filters' => [
-        'roles' => ['all' => 'Rol', 'admin' => 'Administradores', 'user' => 'Usuarios'],
-        'states' => ['all' => 'Todos', 'active' => 'Solo activos', 'inactive' => 'Solo inactivos'],
+        'roles' => ['all' => 'Role', 'admin' => 'Admins', 'user' => 'Users'],
+        'states' => ['all' => 'All', 'active' => 'Only active', 'inactive' => 'Only inactive'],
     ]
 ];

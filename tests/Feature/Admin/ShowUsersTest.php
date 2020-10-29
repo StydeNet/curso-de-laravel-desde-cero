@@ -17,7 +17,7 @@ class ShowUsersTest extends TestCase
             'name' => 'Duilio Palacios'
         ]);
 
-        $this->get("/usuarios/{$user->id}") // usuarios/5
+        $this->get("/users/{$user->id}")
         ->assertStatus(200)
             ->assertSee('Duilio Palacios');
     }
@@ -27,8 +27,8 @@ class ShowUsersTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $this->get('/usuarios/999')
+        $this->get('/users/999')
             ->assertStatus(404)
-            ->assertSee('Página no encontrada');
+            ->assertSee('Not Found');
     }
 }

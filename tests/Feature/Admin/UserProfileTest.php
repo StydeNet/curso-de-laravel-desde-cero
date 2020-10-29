@@ -28,11 +28,11 @@ class UsersProfileTest extends TestCase
 
         //$this->actingAs($user);
 
-        $response = $this->get('/editar-perfil/');
+        $response = $this->get('/edit-profile/');
 
         $response->assertStatus(200);
 
-        $response = $this->put('/editar-perfil/', [
+        $response = $this->put('/edit-profile/', [
             'name' => 'Duilio',
             'email' => 'duilio@styde.net',
             'bio' => 'Programador de Laravel y Vue.js',
@@ -61,7 +61,7 @@ class UsersProfileTest extends TestCase
             'role' => 'user'
         ]);
 
-        $response = $this->put('/editar-perfil/', $this->withData([
+        $response = $this->put('/edit-profile/', $this->withData([
             'role' => 'admin',
         ]));
 
@@ -80,7 +80,7 @@ class UsersProfileTest extends TestCase
             'password' => bcrypt('old123'),
         ]);
 
-        $response = $this->put('/editar-perfil/', $this->withData([
+        $response = $this->put('/edit-profile/', $this->withData([
             'email' => 'duilio@styde.net',
             'password' => 'new456'
         ]));

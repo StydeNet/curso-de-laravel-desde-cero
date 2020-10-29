@@ -31,13 +31,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                    <a class="nav-link" href="{{ url('/users') }}">{{ __('User') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/profesiones') }}">Profesiones</a>
+                    <a class="nav-link" href="{{ url('/professions') }}">{{ __('Professions') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/habilidades') }}">Habilidades</a>
+                    <a class="nav-link" href="{{ url('/skills') }}">{{ __('Skills') }}</a>
                 </li>
             </ul>
         </div>

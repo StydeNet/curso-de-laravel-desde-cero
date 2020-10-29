@@ -1,18 +1,16 @@
-@extends('layout')
+<x-app-layout>
+    <x-slot name="title">@lang('Skills')</x-slot>
 
-@section('title', 'Habilidades')
-
-@section('content')
     <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">Listado de habilidades</h1>
+        <h1 class="pb-1">{{ __('Skills') }}</h1>
     </div>
 
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">{{ __('Title') }}</th>
+            <th scope="col">{{ __('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -31,8 +29,4 @@
         @endforeach
         </tbody>
     </table>
-@endsection
-
-@section('sidebar')
-    @parent
-@endsection
+</x-app-layout>
