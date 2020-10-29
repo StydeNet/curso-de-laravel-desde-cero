@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/users') }}">{{ __('User') }}</a>
+                    <a class="nav-link" href="{{ url('/users') }}">{{ __('users.title.index') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/professions') }}">{{ __('Professions') }}</a>

@@ -2,7 +2,7 @@
 
 return [
     'title' => [
-        'index' => 'Users List',
+        'index' => 'Users',
         'trash' => 'Users Trash',
     ],
 
