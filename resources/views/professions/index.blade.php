@@ -3,7 +3,7 @@
     <x-slot name="title">{{ __('Professions') }}</x-slot>
 
     <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">{{ __('Professions') }}}</h1>
+        <h1 class="pb-1">{{ __('Professions') }}</h1>
     </div>
 
     <table class="table">
@@ -34,4 +34,4 @@
         @endforeach
         </tbody>
     </table>
-</x-app-layout>>
+</x-app-layout>
