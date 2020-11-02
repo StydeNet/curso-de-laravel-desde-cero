@@ -1,7 +1,15 @@
 <?php
 
+use Styde\Enlighten\Section;
+
 return [
     'enabled' => true,
+
+    'hide' => [
+        Section::SESSION,
+        Section::EXCEPTION,
+        Section::QUERIES,
+    ],
 
     'tests' => [
         // Add expressions to ignore test class names and test method names.

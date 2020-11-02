@@ -11,7 +11,11 @@ class FilterUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    /**
+     * @test
+     * @title Filter the users by state active
+     * @description This will allow users to filter other users in the system by active state.
+     */
     function filter_users_by_state_active()
     {
         $activeUser = User::factory()->create();
