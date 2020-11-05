@@ -22,3 +22,6 @@ To start, install as a normal Laravel app:
 9. Start the local server with `php artisan serve` if needed
 10. Visit `http://127.0.0.1:8000/enlighten` (change the URL if needed).
 11. To try the project in the browser, run `php artisan migrate --seed` and go to `/users`
+12. After running the tests the first time, run `php artisan enlighten:export` to export your documentation as static files!
+
+Please notice that some tests are failing on purpose, to help you see how Enlighten behaves when one or more tests are failing or incomplete.
