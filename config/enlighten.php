@@ -1,14 +1,14 @@
 <?php
 
-use Styde\Enlighten\Section;
+//use Styde\Enlighten\Section;
 
 return [
     'enabled' => true,
 
     'hide' => [
-        Section::SESSION,
-        Section::EXCEPTION,
-        Section::QUERIES,
+//        Section::SESSION,
+//        Section::EXCEPTION,
+//        Section::QUERIES,
     ],
 
     'tests' => [

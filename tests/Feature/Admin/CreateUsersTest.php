@@ -76,10 +76,12 @@ class CreateUsersTest extends TestCase
         $skillB = Skill::factory()->create();
         $skillC = Skill::factory()->create();
 
-        $this->post('/users/', $this->withData([
-            'skills' => [$skillA->id, $skillB->id],
-            'profession_id' => $profession->id,
-        ]))->assertRedirect('users');
+        $this->followingRedirects()
+            ->post('/users/', $this->withData([
+                'skills' => [$skillA->id, $skillB->id],
+                'profession_id' => $profession->id,
+            ]))
+            ->assertOk();
 
         $this->assertCredentials([
             'name' => 'Duilio',
