@@ -4,6 +4,12 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../enlighten"
+        }
+    ],
     "require": {
         "php": "^7.4",
         "fideloper/proxy": "~4.0",
@@ -19,7 +25,7 @@
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
-        "styde/enlighten": "^0.4"
+        "styde/enlighten": "dev-dev"
     },
     "autoload": {
         "psr-4": {

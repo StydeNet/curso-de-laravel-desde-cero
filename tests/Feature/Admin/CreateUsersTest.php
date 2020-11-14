@@ -68,6 +68,29 @@ class CreateUsersTest extends TestCase
     }
 
     /** @test */
+    function the_twitter_field_is_optional()
+    {
+        $this->post('/users/', $this->withData([
+            'twitter' => null,
+        ]))->assertRedirect('users');
+
+        $this->assertCredentials([
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => '123456',
+        ]);
+
+        $this->assertDatabaseHas('user_profiles', [
+            'bio' => 'Laravel Developer',
+            'twitter' => null,
+            'user_id' => User::findByEmail('duilio@styde.net')->id,
+        ]);
+    }
+
+    /**
+     * @test
+     * @enlighten {"order": 1}
+     */
     function it_creates_a_new_user()
     {
         $profession = Profession::factory()->create();
@@ -113,26 +136,6 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseMissing('user_skill', [
             'user_id' => $user->id,
             'skill_id' => $skillC->id,
-        ]);
-    }
-
-    /** @test */
-    function the_twitter_field_is_optional()
-    {
-        $this->post('/users/', $this->withData([
-            'twitter' => null,
-        ]))->assertRedirect('users');
-
-        $this->assertCredentials([
-            'name' => 'Duilio',
-            'email' => 'duilio@styde.net',
-            'password' => '123456',
-        ]);
-
-        $this->assertDatabaseHas('user_profiles', [
-            'bio' => 'Laravel Developer',
-            'twitter' => null,
-            'user_id' => User::findByEmail('duilio@styde.net')->id,
         ]);
     }
 

@@ -7,6 +7,9 @@ use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @enlighten {"order": 100000}
+ */
 class DeleteUsersTest extends TestCase
 {
     use RefreshDatabase;

@@ -40,21 +40,45 @@ return [
         ]
     ],
 
-    // Configure the test suites that will be shown in the frontend.
-     'test-suites' => ['Feature' => 'Feature'],
+    // Configure a default view for the panel. Options: features, modules and endpoints.
+    'area_view' => 'endpoints',
+
+    // Customise the name and view template of each area that will be shown in the panel.
+    // By default, each area slug will represent a "test suite" in the tests directory.
+    // Each area can have a different view style, ex: features, modules or endpoints.
+    'areas' => [
+        [
+            'slug' => 'api',
+            'name' => 'API',
+            'view' => 'endpoints',
+        ],
+        [
+            'slug' => 'feature',
+            'name' => 'Features',
+            'view' => 'endpoints',
+        ],
+        [
+            'slug' => 'unit',
+            'name' => 'Unit',
+            'view' => 'features',
+        ],
+    ],
 
     'modules' => [
         [
             'name' => 'Users',
-            'pattern' => ['*Users*'],
+            'classes' => ['*Users*'],
+            'routes' => ['user*', '*profile*'],
         ],
         [
             'name' => 'Professions',
-            'pattern' => ['*Professions*']
+            'classes' => ['*Professions*'],
+            'routes' => ['profession*'],
         ],
         [
             'name' => 'Other Modules',
-            'pattern' => ['*'],
+            'classes' => ['*'],
+            'routes' => ['*'],
         ],
     ]
 ];
