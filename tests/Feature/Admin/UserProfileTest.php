@@ -5,10 +5,9 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\User;
-use App\Models\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UsersProfileTest extends TestCase
+class UserProfileTest extends TestCase
 {
     use RefreshDatabase;
 
