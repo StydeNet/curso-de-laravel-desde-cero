@@ -12,13 +12,14 @@
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
-        "beyondcode/laravel-dump-server": "^1.0",
         "barryvdh/laravel-debugbar": "^3.4",
+        "beyondcode/laravel-dump-server": "^1.0",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.0",
+        "styde/enlighten": "^0.5.7"
     },
     "autoload": {
         "psr-4": {
