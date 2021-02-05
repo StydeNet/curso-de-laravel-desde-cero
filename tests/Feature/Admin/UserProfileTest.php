@@ -67,7 +67,7 @@ class UsersProfileTest extends TestCase
 
         $response->assertRedirect();
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas('usersx', [
             'id' => $user->id,
             'role' => 'user',
         ]);

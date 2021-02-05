@@ -4,6 +4,12 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../enlighten"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "~4.0",
@@ -18,7 +24,8 @@
         "laravel/dusk": "^5.0",
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "styde/enlighten": "dev-dev"
     },
     "autoload": {
         "classmap": [

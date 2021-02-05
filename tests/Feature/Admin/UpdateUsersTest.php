@@ -28,7 +28,7 @@ class UpdateUsersTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->get("/usuarios/{$user->id}/editar") // usuarios/5/editar
+        $this->get("/usuarios/{$user->id}/editarx") // usuarios/5/editar
         ->assertStatus(200)
             ->assertViewIs('users.edit')
             ->assertSee('Editar usuario')
