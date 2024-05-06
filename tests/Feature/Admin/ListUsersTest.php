@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Login;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,7 +12,7 @@ class ListUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function it_shows_the_users_list()
     {
         User::factory()->create([
@@ -31,7 +32,7 @@ class ListUsersTest extends TestCase
         $this->assertNotRepeatedQueries();
     }
 
-    /** @test */
+    #[Test]
     function it_paginates_the_users()
     {
         User::factory()->create([
@@ -81,7 +82,7 @@ class ListUsersTest extends TestCase
             ->assertDontSee('Third User');
     }
 
-    /** @test */
+    #[Test]
     function users_are_ordered_by_name()
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -103,7 +104,7 @@ class ListUsersTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     function users_are_ordered_by_email()
     {
         User::factory()->create(['email' => 'john.doe@example.com']);
@@ -125,7 +126,7 @@ class ListUsersTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     function users_are_ordered_by_registration_date()
     {
         User::factory()->create(['name' => 'John Doe', 'created_at' => now()->subDays(2)]);
@@ -147,7 +148,7 @@ class ListUsersTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     function users_are_ordered_by_login_date()
     {
         Login::factory()->create([
@@ -178,7 +179,7 @@ class ListUsersTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     function invalid_order_query_data_is_ignored_and_the_default_order_is_used_instead()
     {
         User::factory()->create(['name' => 'John Doe', 'created_at' => now()->subDays(2)]);
@@ -226,7 +227,7 @@ class ListUsersTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     function it_shows_a_default_message_if_the_users_list_is_empty()
     {
         $this->get('/users')
@@ -234,7 +235,7 @@ class ListUsersTest extends TestCase
             ->assertSee('There are no records.');
     }
 
-    /** @test */
+    #[Test]
     function it_shows_the_deleted_users()
     {
         User::factory()->create([

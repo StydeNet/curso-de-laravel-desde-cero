@@ -55,7 +55,7 @@ class QueryBuilder extends Builder
         return $this;
     }
 
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null, $total = null)
     {
         $paginator = parent::paginate($perPage, $columns, $pageName, $page);
 

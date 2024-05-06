@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\Skill;
 use App\Models\User;
@@ -11,8 +12,8 @@ class FilterUsersTest extends TestCase
 {
     use RefreshDatabase;
 
+    #[Test]
     /**
-     * @test
      * @title Filter the users by state active
      * @description This will allow users to filter other users in the system by active state.
      */
@@ -29,7 +30,7 @@ class FilterUsersTest extends TestCase
             ->notContains($inactiveUser);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_by_state_inactive()
     {
         $activeUser = User::factory()->create();
@@ -45,7 +46,7 @@ class FilterUsersTest extends TestCase
             ->notContains($activeUser);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_by_role_admin()
     {
         $admin = User::factory()->create(['role' => 'admin']);
@@ -59,7 +60,7 @@ class FilterUsersTest extends TestCase
             ->notContains($user);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_by_role_user()
     {
         $admin = User::factory()->create(['role' => 'admin']);
@@ -75,7 +76,7 @@ class FilterUsersTest extends TestCase
             ->notContains($admin);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_by_skill()
     {
         $php = Skill::factory()->create(['name' => 'php']);
@@ -100,7 +101,7 @@ class FilterUsersTest extends TestCase
             ->notContains($frontendDev);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_created_from_date()
     {
         $newestUser = User::factory()->create([
@@ -130,7 +131,7 @@ class FilterUsersTest extends TestCase
             ->notContains($oldestUser);
     }
 
-    /** @test */
+    #[Test]
     function filter_users_created_to_date()
     {
         $newestUser = User::factory()->create([

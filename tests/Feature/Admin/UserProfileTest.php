@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\User;
@@ -18,7 +19,7 @@ class UserProfileTest extends TestCase
         'twitter' => 'https://twitter.com/sileence',
     ];
 
-    /** @test */
+    #[Test]
     function a_user_can_edit_its_profile()
     {
         User::factory()->create();
@@ -53,7 +54,7 @@ class UserProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_user_cannot_change_its_role()
     {
         $user = User::factory()->create([
@@ -72,7 +73,7 @@ class UserProfileTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_user_cannot_change_its_password()
     {
         User::factory()->create([

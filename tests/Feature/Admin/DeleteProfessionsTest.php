@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\User;
@@ -11,7 +12,7 @@ class DeleteProfessionsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function it_deletes_a_profession()
     {
         $profession = Profession::factory()->create();
@@ -23,13 +24,13 @@ class DeleteProfessionsTest extends TestCase
         $this->assertDatabaseEmpty('professions');
     }
 
-    /** @test */
+    #[Test]
     function users_can_delete_all_the_professions()
     {
         $this->markTestIncomplete();
     }
 
-    /** @test */
+    #[Test]
     function a_profession_associated_to_a_profile_cannot_be_deleted()
     {
         $this->withExceptionHandling();

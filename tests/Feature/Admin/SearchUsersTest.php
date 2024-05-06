@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Team;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,7 +12,7 @@ class SearchUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function search_users_by_name()
     {
         $joel = User::factory()->create([
@@ -31,7 +32,7 @@ class SearchUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function show_results_with_a_partial_search_by_name()
     {
         $joel = User::factory()->create([
@@ -51,7 +52,7 @@ class SearchUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function search_users_by_email()
     {
         $joel = User::factory()->create([
@@ -69,7 +70,7 @@ class SearchUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function show_results_with_a_partial_search_by_email()
     {
         $joel = User::factory()->create([
@@ -87,7 +88,7 @@ class SearchUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function search_users_by_team_name()
     {
         $joel = User::factory()->create([
@@ -119,7 +120,7 @@ class SearchUsersTest extends TestCase
             ->notContains($ellie);
     }
 
-    /** @test */
+    #[Test]
     function partial_search_by_team_name()
     {
         $joel = User::factory()->create([

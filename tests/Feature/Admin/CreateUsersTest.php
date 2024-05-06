@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\Skill;
@@ -25,8 +26,8 @@ class CreateUsersTest extends TestCase
         'state' => 'active',
     ];
 
+    #[Test]
     /**
-     * @test
      * @enlighten {"exclude": true}
      */
     function it_loads_the_new_users_page()
@@ -47,7 +48,7 @@ class CreateUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function it_displays_validation_errors_in_the_new_user_form()
     {
         $profession = Profession::factory()->create();
@@ -67,7 +68,7 @@ class CreateUsersTest extends TestCase
             ->assertSeeText('The field email must be unique');
     }
 
-    /** @test */
+    #[Test]
     function the_twitter_field_is_optional()
     {
         $this->post('/users/', $this->withData([
@@ -87,8 +88,8 @@ class CreateUsersTest extends TestCase
         ]);
     }
 
+    #[Test]
     /**
-     * @test
      * @enlighten {"order": 1}
      */
     function it_creates_a_new_user()
@@ -139,7 +140,7 @@ class CreateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_role_field_is_optional()
     {
         $this->post('/users/', $this->withData([
@@ -152,7 +153,7 @@ class CreateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_role_must_be_valid()
     {
         $this->handleValidationExceptions();
@@ -164,7 +165,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_profession_id_field_is_optional()
     {
         $this->post('/users/', $this->withData([
@@ -184,7 +185,7 @@ class CreateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_user_is_redirected_to_the_previous_page_when_the_validation_fails()
     {
         $this->handleValidationExceptions();
@@ -196,7 +197,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_name_is_required()
     {
         $this->handleValidationExceptions();
@@ -209,7 +210,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_email_is_required()
     {
         $this->handleValidationExceptions();
@@ -223,7 +224,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_email_must_be_valid()
     {
         $this->handleValidationExceptions();
@@ -236,7 +237,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_email_must_be_unique()
     {
         $this->handleValidationExceptions();
@@ -253,7 +254,7 @@ class CreateUsersTest extends TestCase
         $this->assertEquals(1, User::count());
     }
 
-    /** @test */
+    #[Test]
     function the_password_is_required()
     {
         $this->handleValidationExceptions();
@@ -266,7 +267,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_profession_must_be_valid()
     {
         $this->handleValidationExceptions();
@@ -279,7 +280,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function only_not_deleted_professions_can_be_selected()
     {
         $deletedProfession = Profession::factory()->create([
@@ -296,7 +297,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_skills_must_be_an_array()
     {
         $this->handleValidationExceptions();
@@ -309,7 +310,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_skills_must_be_valid()
     {
         $this->handleValidationExceptions();
@@ -325,7 +326,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_state_is_required()
     {
         $this->handleValidationExceptions();
@@ -337,7 +338,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function the_state_must_be_valid()
     {
         $this->handleValidationExceptions();

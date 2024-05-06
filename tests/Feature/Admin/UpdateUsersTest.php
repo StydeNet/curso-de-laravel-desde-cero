@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\Profession;
 use App\Models\Skill;
@@ -23,7 +24,7 @@ class UpdateUsersTest extends TestCase
         'state' => 'active',
     ];
 
-    /** @test */
+    #[Test]
     function it_loads_the_edit_user_page()
     {
         $user = User::factory()->create();
@@ -37,7 +38,7 @@ class UpdateUsersTest extends TestCase
             });
     }
 
-    /** @test */
+    #[Test]
     function it_updates_a_user()
     {
         $user = User::factory()->create();
@@ -95,7 +96,7 @@ class UpdateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function it_detaches_all_the_skills_if_none_is_checked()
     {
         $user = User::factory()->create();
@@ -110,7 +111,7 @@ class UpdateUsersTest extends TestCase
         $this->assertDatabaseEmpty('user_skill');
     }
 
-    /** @test */
+    #[Test]
     function the_name_is_required()
     {
         $this->handleValidationExceptions();
@@ -127,7 +128,7 @@ class UpdateUsersTest extends TestCase
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
     }
 
-    /** @test */
+    #[Test]
     function the_email_must_be_valid()
     {
         $this->handleValidationExceptions();
@@ -144,7 +145,7 @@ class UpdateUsersTest extends TestCase
         $this->assertDatabaseMissing('users', ['name' => 'Duilio Palacios']);
     }
 
-    /** @test */
+    #[Test]
     function the_email_must_be_unique()
     {
         $this->handleValidationExceptions();
@@ -167,7 +168,7 @@ class UpdateUsersTest extends TestCase
         //
     }
 
-    /** @test */
+    #[Test]
     function the_users_email_can_stay_the_same()
     {
         $user = User::factory()->create([
@@ -187,7 +188,7 @@ class UpdateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_password_is_optional()
     {
         $oldPassword = 'CLAVE_ANTERIOR';
@@ -209,7 +210,7 @@ class UpdateUsersTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     function the_role_is_required()
     {
         $this->handleValidationExceptions();
@@ -226,7 +227,7 @@ class UpdateUsersTest extends TestCase
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
     }
 
-    /** @test */
+    #[Test]
     function the_state_is_required()
     {
         $this->handleValidationExceptions();
@@ -243,7 +244,7 @@ class UpdateUsersTest extends TestCase
         $this->assertDatabaseMissing('users', ['email' => 'duilio@styde.net']);
     }
 
-    /** @test */
+    #[Test]
     function the_state_must_be_valid()
     {
         $this->handleValidationExceptions();

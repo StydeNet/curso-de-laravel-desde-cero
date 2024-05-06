@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -10,7 +11,7 @@ class ShowUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function it_displays_the_users_details()
     {
         $user = User::factory()->create([
@@ -22,7 +23,7 @@ class ShowUsersTest extends TestCase
             ->assertSee('Duilio Palacios');
     }
 
-    /** @test */
+    #[Test]
     function it_displays_a_404_error_if_the_user_is_not_found()
     {
         $this->withExceptionHandling();

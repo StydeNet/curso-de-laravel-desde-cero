@@ -3,11 +3,12 @@
 namespace Tests\Unit;
 
 use App\Rules\SortableColumn;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SortableColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     function validates_sortable_values()
     {
         $rule = new SortableColumn(['id', 'name', 'email']);

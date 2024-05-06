@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Profession;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -10,7 +11,7 @@ class ListProfessionsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function it_shows_the_professions_list()
     {
         Profession::factory()->create(['title' => 'Designer']);

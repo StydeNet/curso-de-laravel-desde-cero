@@ -4,6 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Skill;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,7 +15,7 @@ class DeleteUsersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     function it_sends_a_user_to_the_trash()
     {
         $user = User::factory()->create();
@@ -43,7 +44,7 @@ class DeleteUsersTest extends TestCase
         $this->assertTrue($user->trashed());
     }
 
-    /** @test */
+    #[Test]
     function it_completely_deletes_a_user()
     {
         $user = User::factory()->create([
@@ -56,7 +57,7 @@ class DeleteUsersTest extends TestCase
         $this->assertDatabaseEmpty('users');
     }
 
-    /** @test */
+    #[Test]
     function it_cannot_delete_a_user_that_is_not_in_the_trash()
     {
         $this->withExceptionHandling();

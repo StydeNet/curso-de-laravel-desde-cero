@@ -5,12 +5,13 @@ namespace Tests\Unit;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CollectionTest extends TestCase
 {
+    #[Test]
     /**
-     * @test
      * @description Collections are "macroable", which allows you to add additional methods to the `Collection` class at run time. For example, the following code adds a `toUpper` method to the `Collection` class:
      */
     function can_create_a_collection_macro()
@@ -33,7 +34,7 @@ class CollectionTest extends TestCase
         $this->assertSame(['FIRST', 'SECOND'], $names);
     }
 
-    /** @test */
+    #[Test]
     function can_add_users_to_a_collection()
     {
         $collection = enlighten(function () {
