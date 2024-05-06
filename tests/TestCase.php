@@ -4,12 +4,12 @@ namespace Tests;
 
 use Illuminate\Testing\TestResponse;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-//use Styde\Enlighten\Tests\EnlightenSetup;
+use Styde\Enlighten\Tests\EnlightenSetup;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, TestHelpers, DetectRepeatedQueries;
-//    use EnlightenSetup;
+    use EnlightenSetup;
 
     protected $defaultData = [];
 
@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->enableQueryLog();
 
-//        $this->setUpEnlighten();
+        $this->setUpEnlighten();
     }
 
     protected function tearDown(): void

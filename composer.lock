@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a05802bc1054097e14628c5edcce63d0",
+    "content-hash": "16c7133ede078ae69a3c609e6fad1a68",
     "packages": [
         {
             "name": "brick/math",
@@ -8019,6 +8019,79 @@
             "time": "2024-05-02T13:42:49+00:00"
         },
         {
+            "name": "styde/enlighten",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/enlighten.git",
+                "reference": "3ac912ad76f09722403ad493083905bc2dfc019e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/enlighten/zipball/3ac912ad76f09722403ad493083905bc2dfc019e",
+                "reference": "3ac912ad76f09722403ad493083905bc2dfc019e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.2",
+                "laravel/framework": "^11.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.1",
+                "orchestra/testbench": "^9.0",
+                "phpunit/phpunit": "^11.0.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Styde\\Enlighten\\Providers\\EnlightenServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Styde\\Enlighten\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "duilio@styde.net"
+                },
+                {
+                    "name": "Jeffer Ochoa",
+                    "email": "jeffer.8a@gmail.com"
+                }
+            ],
+            "description": "Enlighten your APIs with auto-generated documentation",
+            "support": {
+                "issues": "https://github.com/StydeNet/enlighten/issues",
+                "source": "https://github.com/StydeNet/enlighten/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sileence",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/duiliopalacios",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-05-06T15:18:00+00:00"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v7.0.7",
             "source": {
@@ -8142,7 +8215,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "styde/enlighten": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
